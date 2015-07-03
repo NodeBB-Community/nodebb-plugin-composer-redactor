@@ -2,6 +2,7 @@
 	"id": "nodebb-plugin-composer-defailt",
 	"url": "https://github.com/NodeBB/nodebb-plugin-composer-defailt",
 	"less": [
+		"./static/less/composer.less"
 	],
 	"scripts": [
 		"./static/lib/client.js",
