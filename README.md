@@ -5,7 +5,7 @@ This plugin activates the default composer for NodeBB. It is activated by defaul
 ## Screenshots
 
 ### Desktop
-![Desktop Composer][screenshots/desktop.png?raw=true]
+![Desktop Composer](screenshots/desktop.png?raw=true)
 
 ### Mobile Devices
-![Mobile Composer][screenshots/mobile.png?raw=true]
+![Mobile Composer](screenshots/mobile.png?raw=true)
