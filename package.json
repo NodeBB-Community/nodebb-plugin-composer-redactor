@@ -1,26 +1,28 @@
 {
-  "name": "nodebb-plugin-quickstart",
+  "name": "nodebb-plugin-composer-default",
   "version": "0.0.0",
   "description": "",
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/julianlam/nodebb-plugin-quickstart"
+    "url": "https://github.com/NodeBB/nodebb-plugin-composer-default"
   },
   "keywords": [
     "nodebb",
-    "plugin"
+    "plugin",
+    "composer",
+    "markdown"
   ],
   "author": {
-    "name": "Julian Lam",
-    "email": "julian@nodebb.org"
+    "name": "NodeBB Team",
+    "email": "sales@nodebb.org"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/julianlam/nodebb-plugin-quickstart/issues"
+    "url": "https://github.com/NodeBB/nodebb-plugin-composer-default/issues"
   },
   "readmeFilename": "README.md",
   "nbbpm": {
-    "compatibility": "^0.6.0"
+    "compatibility": "^0.7.1"
   }
 }

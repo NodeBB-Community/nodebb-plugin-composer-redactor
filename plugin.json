@@ -1,20 +1,19 @@
 {
-	"id": "nodebb-plugin-quickstart",
-	"url": "https://github.com/NodeBB/nodebb-plugin-quickstart",
-	"library": "./library.js",
-	"hooks": [
-		{ "hook": "static:app.load", "method": "init" },
-		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" }
-	],
-	"staticDirs": {
-		"static": "./static"
-	},
+	"id": "nodebb-plugin-composer-defailt",
+	"url": "https://github.com/NodeBB/nodebb-plugin-composer-defailt",
 	"less": [
-		"static/style.less"
 	],
 	"scripts": [
-		"static/lib/main.js",
-		"static/lib/admin.js"
+		"./static/lib/client.js",
+		"./static/lib/composer.js",
+		"./static/lib/composer/categoryList.js",
+		"./static/lib/composer/controls.js",
+		"./static/lib/composer/drafts.js",
+		"./static/lib/composer/formatting.js",
+		"./static/lib/composer/preview.js",
+		"./static/lib/composer/resize.js",
+		"./static/lib/composer/tags.js",
+		"./static/lib/composer/uploads.js"
 	],
 	"templates": "static/templates"
 }
