@@ -17,7 +17,7 @@
     "name": "NodeBB Team",
     "email": "sales@nodebb.org"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/NodeBB/nodebb-plugin-composer-default/issues"
   },
