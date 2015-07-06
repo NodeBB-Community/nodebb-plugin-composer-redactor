@@ -55,7 +55,7 @@ define('composer', [
 	}
 
 	// Query server for formatting options
-	socket.emit('modules.composer.getFormattingOptions', function(err, options) {
+	socket.emit('plugins.defaultComposer.getFormattingOptions', function(err, options) {
 		composer.formatting = options;
 	});
 
@@ -211,7 +211,7 @@ define('composer', [
 	};
 
 	composer.editPost = function(pid) {
-		socket.emit('modules.composer.push', pid, function(err, threadData) {
+		socket.emit('plugins.defaultComposer.push', pid, function(err, threadData) {
 			if(err) {
 				return app.alertError(err.message);
 			}
@@ -245,7 +245,7 @@ define('composer', [
 
 	function startNotifyTyping(postData) {
 		function emit() {
-			socket.emit('modules.composer.notifyTyping', {
+			socket.emit('plugins.defaultComposer.notifyTyping', {
 				tid: postData.tid,
 				uid: app.user.uid
 			});
@@ -265,7 +265,7 @@ define('composer', [
 		if (!parseInt(postData.tid, 10)) {
 			return;
 		}
-		socket.emit('modules.composer.stopNotifyTyping', {
+		socket.emit('plugins.defaultComposer.stopNotifyTyping', {
 			tid: postData.tid,
 			uid: app.user.uid
 		});
@@ -444,7 +444,7 @@ define('composer', [
 
 	function handleHelp(postContainer) {
 		var helpBtn = postContainer.find('.help');
-		socket.emit('modules.composer.renderHelp', function(err, html) {
+		socket.emit('plugins.defaultComposer.renderHelp', function(err, html) {
 			if (!err && html && html.length > 0) {
 				helpBtn.removeClass('hidden');
 				helpBtn.on('click', function() {

@@ -1,6 +1,10 @@
 {
-	"id": "nodebb-plugin-composer-defailt",
-	"url": "https://github.com/NodeBB/nodebb-plugin-composer-defailt",
+	"id": "nodebb-plugin-composer-default",
+	"url": "https://github.com/NodeBB/nodebb-plugin-composer-default",
+	"library": "library.js",
+	"hooks": [
+		{ "hook": "static:app.load", "method": "init" }
+	],
 	"less": [
 		"./static/less/composer.less"
 	],

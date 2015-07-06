@@ -16,7 +16,7 @@ define('composer/preview', function() {
 		var textarea = postContainer.find('textarea');
 
 		timeoutId = setTimeout(function() {
-			socket.emit('modules.composer.renderPreview', textarea.val(), function(err, preview) {
+			socket.emit('plugins.defaultComposer.renderPreview', textarea.val(), function(err, preview) {
 				timeoutId = 0;
 				if (err) {
 					return;
