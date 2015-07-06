@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-composer-default",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "library.js",
   "repository": {
