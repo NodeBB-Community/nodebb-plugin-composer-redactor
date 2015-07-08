@@ -14,3 +14,7 @@ This plugin activates the WYSIWYG Redactor composer for NodeBB. Please ensure th
 ### Mobile
 
 ![Mobile](/screenshots/mobile.png)
+
+## Attributions
+
+* Thank you to Drew Llewellyn ([GitHub](https://github.com/drewdotpro)) for providing the OEM license that made this plugin possible!
