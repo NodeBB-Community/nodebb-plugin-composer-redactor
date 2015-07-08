@@ -7,4 +7,10 @@ This plugin activates the WYSIWYG Redactor composer for NodeBB. Please ensure th
 
 ## Screenshots
 
-*Coming soon*
+### Desktop
+
+![Desktop](/screenshots/desktop.png)
+
+### Mobile
+
+![Mobile](/screenshots/mobile.png)
