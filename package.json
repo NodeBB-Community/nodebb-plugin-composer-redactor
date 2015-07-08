@@ -1,7 +1,7 @@
 {
   "name": "nodebb-plugin-composer-redactor",
   "version": "1.0.0",
-  "description": "",
+  "description": "Redactor Composer for NodeBB",
   "main": "library.js",
   "repository": {
     "type": "git",
