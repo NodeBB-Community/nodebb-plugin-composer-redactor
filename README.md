@@ -1,11 +1,10 @@
-# Default Composer for NodeBB
+# Redactor for NodeBB
 
-This plugin activates the default composer for NodeBB. It is activated by default, but can be swapped out as necessary.
+This plugin activates the WYSIWYG Redactor composer for NodeBB. Please ensure that:
+
+* "Sanitise HTML" is disabled from the Markdown plugin (or the markdown plugin is disabled altogether)
+* Any other composers (i.e. nodebb-plugin-composer-default) is disabled
 
 ## Screenshots
 
-### Desktop
-![Desktop Composer](screenshots/desktop.png?raw=true)
-
-### Mobile Devices
-![Mobile Composer](screenshots/mobile.png?raw=true)
+*Coming soon*

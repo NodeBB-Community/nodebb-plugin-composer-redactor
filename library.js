@@ -1,12 +1,12 @@
 "use strict";
 
 var SocketPlugins = require.main.require('./src/socket.io/plugins'),
-	socketMethods = require('./websockets'),
+	defaultComposer = require.main.require('nodebb-plugin-composer-default'),
 
 	plugin = {};
 
 plugin.init = function(data, callback) {
-	SocketPlugins.defaultComposer = socketMethods;
+	SocketPlugins.composer = defaultComposer.socketMethods;
 
 	callback();
 }

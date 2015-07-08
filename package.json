@@ -1,28 +1,31 @@
 {
-  "name": "nodebb-plugin-composer-default",
-  "version": "1.0.2",
+  "name": "nodebb-plugin-composer-redactor",
+  "version": "0.0.0",
   "description": "",
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NodeBB/nodebb-plugin-composer-default"
+    "url": "https://github.com/NodeBB/nodebb-plugin-composer-redactor"
   },
   "keywords": [
     "nodebb",
     "plugin",
     "composer",
-    "markdown"
+    "redactor"
   ],
   "author": {
     "name": "NodeBB Team",
     "email": "sales@nodebb.org"
   },
-  "license": "GPL-3.0",
+  "license": "http://imperavi.com/redactor/license/",
   "bugs": {
-    "url": "https://github.com/NodeBB/nodebb-plugin-composer-default/issues"
+    "url": "https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues"
   },
   "readmeFilename": "README.md",
   "nbbpm": {
     "compatibility": "^0.7.1"
+  },
+  "peerDependencies": {
+    "nodebb-plugin-composer-default": ">=1.0.3"
   }
 }
