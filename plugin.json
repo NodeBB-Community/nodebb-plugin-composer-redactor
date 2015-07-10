@@ -3,7 +3,8 @@
 	"url": "https://github.com/NodeBB/nodebb-plugin-composer-redactor",
 	"library": "library.js",
 	"hooks": [
-		{ "hook": "static:app.load", "method": "init" }
+		{ "hook": "static:app.load", "method": "init" },
+		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" }
 	],
 	"less": [
 		"../nodebb-plugin-composer-default/static/less/composer.less",
