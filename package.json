@@ -27,5 +27,8 @@
   },
   "peerDependencies": {
     "nodebb-plugin-composer-default": ">=1.0.3"
+  },
+  "dependencies": {
+    "sanitize-html": "^1.7.2"
   }
 }

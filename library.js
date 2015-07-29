@@ -9,7 +9,26 @@ var controllers = require('./lib/controllers'),
 	async = module.parent.require('async'),
 	winston = module.parent.require('winston'),
 
+	sanitize = require('sanitize-html'),
+
 	plugin = {};
+
+var tags = ['span', 'a', 'pre', 'blockquote', 'small', 'em', 'strong',
+	'code', 'kbd', 'mark', 'address', 'cite', 'var', 'samp', 'dfn',
+	'sup', 'sub', 'b', 'i', 'u', 'del', 'ol', 'ul', 'li', 'dl',
+	'dt', 'dd', 'p', 'br', 'video', 'audio', 'iframe', 'embed',
+	'param', 'object', 'img', 'table', 'tbody', 'tfoot', 'thead',
+	'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+var attribs = { 'a': ['*'],
+		'img': ['src', 'alt'],
+		'span': ['class', 'rel', 'data-verified'],
+		'iframe': ['*'],
+		'video': ['*'],
+		'audio': ['*'],
+		'embed': ['*'],
+		'object': ['*'],
+		'param': ['*'],
+		'source': ['*'] };
 
 plugin.init = function(data, callback) {
 	var router = data.router,
@@ -55,5 +74,10 @@ plugin.addAdminNavigation = function(header, callback) {
 
 	callback(null, header);
 };
+
+plugin.sanitize = function(data, callback) {
+	data.content = sanitize(data.content, {allowedTags: tags, allowedAttributes: attribs});
+	callback(null, data);
+}
 
 module.exports = plugin;
