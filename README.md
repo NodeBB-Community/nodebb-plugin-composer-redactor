@@ -21,3 +21,4 @@ This plugin is in its early stages. If you'd like to look at the [documentation]
 ## Attributions
 
 * Thank you to Drew Llewellyn ([GitHub](https://github.com/drewdotpro)) for providing the OEM license that made this plugin possible!
+* Thank you to [philburr](https://github.com/philburr) for his serverside sanitization and z-index fixes.
