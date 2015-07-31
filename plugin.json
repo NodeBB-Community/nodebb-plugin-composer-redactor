@@ -12,6 +12,7 @@
 	"less": [
 		"../nodebb-plugin-composer-default/static/less/composer.less",
 		"./static/less/redactor.less",
+		"./static/less/redactor-overrides.less",
 		"./static/less/composer.less"
 	],
 	"scripts": [
