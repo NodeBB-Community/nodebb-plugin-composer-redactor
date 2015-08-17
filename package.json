@@ -29,6 +29,7 @@
     "nodebb-plugin-composer-default": ">=1.0.3"
   },
   "dependencies": {
-    "sanitize-html": "^1.7.2"
+    "sanitize-html": "^1.7.2",
+    "html-css-sanitizer": "^0.0.3"
   }
 }
