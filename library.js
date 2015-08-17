@@ -10,31 +10,37 @@ var controllers = require('./lib/controllers'),
 	winston = module.parent.require('winston'),
 
 	sanitize = require('sanitize-html'),
-	sanitizecss = require('html-css-sanitizer'),
 
 	plugin = {};
 
-var tags = ['span', 'a', 'pre', 'blockquote', 'small', 'em', 'strong',
+var allowedTags = ['span', 'a', 'pre', 'blockquote', 'small', 'em', 'strong',
 	'code', 'kbd', 'mark', 'address', 'cite', 'var', 'samp', 'dfn',
 	'sup', 'sub', 'b', 'i', 'u', 'del', 'ol', 'ul', 'li', 'dl',
 	'dt', 'dd', 'p', 'br', 'video', 'audio', 'source', 'iframe', 'embed',
 	'param', 'object', 'img', 'table', 'tbody', 'tfoot', 'thead',
 	'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr'];
 
-var attributes = ['abbr', 'accept', 'accept-charset', 'accesskey', 'action',
-	'align', 'alt', 'axis', 'border', 'cellpadding', 'cellspacing', 'char',
-	'charoff', 'charset', 'checked', 'cite', 'class', 'clear', 'cols',
-	'colspan', 'color', 'compact', 'coords', 'datetime', 'dir', 'disabled',
-	'enctype', 'for', 'frame', 'headers', 'height', 'href', 'hreflang',
-	'hspace', 'id', 'ismap', 'label', 'lang', 'longdesc', 'maxlength',
-	'media', 'method', 'multiple', 'name', 'nohref', 'noshade', 'nowrap',
-	'prompt', 'readonly', 'rel', 'rev', 'rows', 'rowspan', 'rules', 'scope',
-	'selected', 'shape', 'size', 'span', 'src', 'start', 'summary',
-	'tabindex', 'target', 'title', 'type', 'usemap', 'valign', 'value',
-	'vspace', 'width', 'style'];
+var allowedAttributes = {
+	'a': ['href', 'hreflang', 'media', 'rel', 'target', 'type'],
+	'img': ['alt', 'height', 'ismap', 'src', 'usemap', 'width'],
+	'iframe': ['height', 'name', 'src', 'width'],
+	'span': [],
+	'video': ['autoplay', 'controls', 'height', 'loop', 'muted', 'poster', 'preload', 'src', 'width'],
+	'audio': ['autoplay', 'controls', 'loop', 'muted', 'preload', 'src'],
+	'embed': ['height', 'src', 'type', 'width'],
+	'object': ['data', 'form', 'height', 'name', 'type', 'usemap', 'width'],
+	'param': ['name', 'value'],
+	'source': ['media', 'src', 'type']};
 
-var attribs = {};
-for (var i = 0; i < tags.length; i++) attribs[tags[i]] = attributes;
+var globalAttributes = ['accesskey', 'class', 'contenteditable', 'dir',
+	'draggable', 'dropzone', 'hidden', 'id', 'lang', 'spellcheck', 'style',
+	'tabindex', 'title', 'translate'];
+
+for (var i = 0; i < allowedTags.length; i++) {
+	if (!allowedAttributes[allowedTags[i]]) allowedAttributes[allowedTags[i]] = [];
+
+	for (var j = 0; j < globalAttributes.length; j++) allowedAttributes[allowedTags[i]].push(globalAttributes[j]);
+}
 
 plugin.init = function(data, callback) {
 	var router = data.router,
@@ -85,11 +91,9 @@ plugin.sanitize = function(data, callback) {
 	function noop(u) { return u }
 
 	if (data && data.content) {
-		data.content = sanitize(data.content, {allowedTags: tags, allowedAttributes: attribs});
-		data.content = sanitizecss.smartSanitize(data.content, noop, noop);
+		data.content = sanitize(data.content, {allowedTags: allowedTags, allowedAttributes: allowedAttributes});
 	}else if (data && data.post && data.post.content) {
-		data.post.content = sanitize(data.post.content, {allowedTags: tags, allowedAttributes: attribs});
-		data.post.content = sanitizecss.smartSanitize(data.post.content, noop, noop);
+		data.post.content = sanitize(data.post.content, {allowedTags: allowedTags, allowedAttributes: allowedAttributes});
 	}
 	callback(null, data);
 }
