@@ -217,4 +217,4 @@ pip-log.txt
 sftp-config.json
 node_modules/
 
-.idea
+.idea/
