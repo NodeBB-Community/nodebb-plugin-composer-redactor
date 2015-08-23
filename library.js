@@ -13,28 +13,40 @@ var controllers = require('./lib/controllers'),
 
 	plugin = {};
 
-var tags = ['span', 'a', 'pre', 'blockquote', 'small', 'em', 'strong',
+var allowedTags = ['span', 'a', 'pre', 'blockquote', 'small', 'em', 'strong',
 	'code', 'kbd', 'mark', 'address', 'cite', 'var', 'samp', 'dfn',
 	'sup', 'sub', 'b', 'i', 'u', 'del', 'ol', 'ul', 'li', 'dl',
-	'dt', 'dd', 'p', 'br', 'video', 'audio', 'iframe', 'embed',
+	'dt', 'dd', 'p', 'br', 'video', 'audio', 'source', 'iframe', 'embed',
 	'param', 'object', 'img', 'table', 'tbody', 'tfoot', 'thead',
-	'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-var attribs = { 'a': ['*'],
-		'img': ['src', 'alt'],
-		'span': ['class', 'rel', 'data-verified'],
-		'iframe': ['*'],
-		'video': ['*'],
-		'audio': ['*'],
-		'embed': ['*'],
-		'object': ['*'],
-		'param': ['*'],
-		'source': ['*'] };
+	'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr'];
+
+var allowedAttributes = {
+	'a': ['href', 'hreflang', 'media', 'rel', 'target', 'type'],
+	'img': ['alt', 'height', 'ismap', 'src', 'usemap', 'width'],
+	'iframe': ['height', 'name', 'src', 'width'],
+	'span': [],
+	'video': ['autoplay', 'controls', 'height', 'loop', 'muted', 'poster', 'preload', 'src', 'width'],
+	'audio': ['autoplay', 'controls', 'loop', 'muted', 'preload', 'src'],
+	'embed': ['height', 'src', 'type', 'width'],
+	'object': ['data', 'form', 'height', 'name', 'type', 'usemap', 'width'],
+	'param': ['name', 'value'],
+	'source': ['media', 'src', 'type']};
+
+var globalAttributes = ['accesskey', 'class', 'contenteditable', 'dir',
+	'draggable', 'dropzone', 'hidden', 'id', 'lang', 'spellcheck', 'style',
+	'tabindex', 'title', 'translate'];
+
+for (var i = 0; i < allowedTags.length; i++) {
+	if (!allowedAttributes[allowedTags[i]]) allowedAttributes[allowedTags[i]] = [];
+
+	for (var j = 0; j < globalAttributes.length; j++) allowedAttributes[allowedTags[i]].push(globalAttributes[j]);
+}
 
 plugin.init = function(data, callback) {
 	var router = data.router,
 		hostMiddleware = data.middleware,
 		hostControllers = data.controllers;
-		
+
 	router.get('/admin/plugins/composer-redactor', hostMiddleware.admin.buildHeader, controllers.renderAdminPage);
 	router.get('/api/admin/plugins/composer-redactor', controllers.renderAdminPage);
 
@@ -76,7 +88,13 @@ plugin.addAdminNavigation = function(header, callback) {
 };
 
 plugin.sanitize = function(data, callback) {
-	data.content = sanitize(data.content, {allowedTags: tags, allowedAttributes: attribs});
+	function noop(u) { return u }
+
+	if (data && data.content) {
+		data.content = sanitize(data.content, {allowedTags: allowedTags, allowedAttributes: allowedAttributes});
+	}else if (data && data.post && data.post.content) {
+		data.post.content = sanitize(data.post.content, {allowedTags: allowedTags, allowedAttributes: allowedAttributes});
+	}
 	callback(null, data);
 }
 
