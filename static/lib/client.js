@@ -24,6 +24,9 @@ $(document).ready(function() {
 		var postContainer = $('#cmp-uuid-' + data.post_uuid),
 			textarea = postContainer.find('textarea');
 
+		$(window).trigger('action:redactor.load', $.Redactor);
+		$(window).off('action:redactor.load');
+
 		textarea.redactor({
 			focus: true
 		});
@@ -39,3 +42,27 @@ $(document).ready(function() {
 		});
 	});
 });
+
+// Button sugar
+$.Redactor.opts.plugins = [];
+$.Redactor.addButton = function (name, awesome, onClick) {
+	if (typeof awesome === 'object') {
+		$.Redactor.prototype[name] = function() {
+			return awesome;
+		};
+	}else{
+		$.Redactor.prototype[name] = function() {
+			return {
+				init: function() {
+					var button = this.button.add(name.toLowerCase().replace(/ /g, '-'), name);
+					if (awesome) this.button.setAwesome(name.toLowerCase().replace(/ /g, '-'), awesome);
+					this.button.addCallback(button, this[name].onClick);
+				},
+				onClick: function() {
+					onClick(this);
+				}
+			};
+		};
+	}
+	$.Redactor.opts.plugins.push(name);
+};
