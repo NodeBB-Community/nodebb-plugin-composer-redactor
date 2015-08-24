@@ -16,8 +16,8 @@
 		"./static/less/composer.less"
 	],
 	"scripts": [
-		"./static/lib/client.js",
 		"./static/lib/redactor.js",
+		"./static/lib/client.js",
 		"../nodebb-plugin-composer-default/static/lib/composer.js",
 		"../nodebb-plugin-composer-default/static/lib/composer/categoryList.js",
 		"../nodebb-plugin-composer-default/static/lib/composer/controls.js",
