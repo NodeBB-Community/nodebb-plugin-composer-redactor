@@ -60,7 +60,7 @@ plugin.init = function(data, callback) {
 	});
 
 	callback();
-}
+};
 
 plugin.checkCompatibility = function(callback) {
 	async.parallel({
@@ -96,6 +96,6 @@ plugin.sanitize = function(data, callback) {
 		data.post.content = sanitize(data.post.content, {allowedTags: allowedTags, allowedAttributes: allowedAttributes});
 	}
 	callback(null, data);
-}
+};
 
 module.exports = plugin;
