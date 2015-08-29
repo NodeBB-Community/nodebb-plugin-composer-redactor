@@ -8887,6 +8887,9 @@
 					xhr.open('POST', this.upload.url);
 					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 
+					//NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
+					this.setHeaders();
+
 					// complete
 					xhr.onreadystatechange = $.proxy(function()
 					{
@@ -8916,6 +8919,9 @@
 							{
 								this.upload.$droparea.removeClass('drag-drop');
 							}
+
+							//NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
+							this.imageKeyTransform(json);
 
 							this.upload.callback(json, this.upload.direct, e);
 					    }
@@ -9460,6 +9466,31 @@
 				{
 					$('html').css({ 'overflow': '', 'padding-right': '' });
 					$('body').remove('redactor-scrollbar-measure');
+				},
+
+
+
+
+				/*
+				 *
+				 *	NodeBB Specific Code Blocks
+				 *
+				 */
+				setHeaders: function(){
+					var opts=this.opts;
+					if(opts.imageUploadHeaders){
+						var keys = Object.keys(opts.imageUploadHeaders);
+
+						keys.forEach(function(key){
+							xhr.setRequestHeader(key, opts.imageUploadHeaders[key]);
+						})
+					}
+				},
+				imageKeyTransform: function(json){
+					var opts=this.opts;
+					if(opts.imageUploadKey){
+						json.filelink=json[opts.imageUploadKey];
+					}
 				}
 			};
 		}

@@ -41,28 +41,35 @@ $(document).ready(function() {
 			editor.css('max-height', data.containerHeight);
 		});
 	});
-});
 
-// Button sugar
-$.Redactor.opts.plugins = [];
-$.Redactor.addButton = function (name, awesome, onClick) {
-	if (typeof awesome === 'object') {
-		$.Redactor.prototype[name] = function() {
-			return awesome;
-		};
-	}else{
-		$.Redactor.prototype[name] = function() {
-			return {
-				init: function() {
-					var button = this.button.add(name.toLowerCase().replace(/ /g, '-'), name);
-					if (awesome) this.button.setAwesome(name.toLowerCase().replace(/ /g, '-'), awesome);
-					this.button.addCallback(button, this[name].onClick);
-				},
-				onClick: function() {
-					onClick(this);
-				}
+	// Button sugar
+	$.Redactor.opts.plugins = [];
+	$.Redactor.addButton = function (name, awesome, onClick) {
+		if (typeof awesome === 'object') {
+			$.Redactor.prototype[name] = function() {
+				return awesome;
 			};
-		};
-	}
-	$.Redactor.opts.plugins.push(name);
-};
+		}else{
+			$.Redactor.prototype[name] = function() {
+				return {
+					init: function() {
+						var button = this.button.add(name.toLowerCase().replace(/ /g, '-'), name);
+						if (awesome) this.button.setAwesome(name.toLowerCase().replace(/ /g, '-'), awesome);
+						this.button.addCallback(button, this[name].onClick);
+					},
+					onClick: function() {
+						onClick(this);
+					}
+				};
+			};
+		}
+		$.Redactor.opts.plugins.push(name);
+	};
+
+	//NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
+	$.Redactor.opts.imageUpload='/api/post/upload';
+	$.Redactor.opts.imageUploadParam='files[]';
+	$.Redactor.opts.imageUploadHeaders={'x-csrf-token': require("csrf").get()};
+	$.Redactor.opts.imageUploadKey='url';
+
+});
