@@ -8888,7 +8888,7 @@
 					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 
 					//NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
-					this.utils.setHeaders();
+					this.utils.setHeaders(xhr);
 
 					// complete
 					xhr.onreadystatechange = $.proxy(function()
@@ -9476,7 +9476,7 @@
 				 *	NodeBB Specific Code Blocks
 				 *
 				 */
-				setHeaders: function(){
+				setHeaders: function(xhr){
 					var opts=this.opts;
 					if(opts.imageUploadHeaders){
 						var keys = Object.keys(opts.imageUploadHeaders);
