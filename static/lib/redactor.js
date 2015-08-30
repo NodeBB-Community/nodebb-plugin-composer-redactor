@@ -8888,7 +8888,7 @@
 					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 
 					//NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
-					this.setHeaders();
+					this.utils.setHeaders();
 
 					// complete
 					xhr.onreadystatechange = $.proxy(function()
@@ -8921,7 +8921,7 @@
 							}
 
 							//NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
-							this.imageKeyTransform(json);
+							this.utils.imageKeyTransform(json);
 
 							this.upload.callback(json, this.upload.direct, e);
 					    }
