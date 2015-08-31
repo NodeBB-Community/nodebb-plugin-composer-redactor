@@ -69,7 +69,7 @@ $(document).ready(function() {
 	//NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
 	$.Redactor.opts.imageUpload='/api/post/upload';
 	$.Redactor.opts.imageUploadParam='files[]';
-	$.Redactor.opts.imageUploadHeaders={'x-csrf-token': require("csrf").get()};
+	$.Redactor.opts.imageUploadHeaders={'x-csrf-token': require.main.require("csrf").get()};
 	$.Redactor.opts.imageUploadKey='url';
 
 });
