@@ -28,7 +28,8 @@ $(document).ready(function() {
 		$(window).off('action:redactor.load');
 
 		textarea.redactor({
-			focus: true
+			focus: true,
+			plugins: ['video']
 		});
 	});
 
