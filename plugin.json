@@ -18,6 +18,7 @@
 	"scripts": [
 		"./static/lib/redactor.js",
 		"./static/lib/video.js",
+		"./static/lib/table.js",
 		"./static/lib/client.js",
 		"./static/lib/redactor.core.js",
 		"../nodebb-plugin-composer-default/static/lib/composer.js",
