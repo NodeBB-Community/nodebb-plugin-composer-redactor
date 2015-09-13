@@ -1,4 +1,4 @@
-<div class="composer wtf">
+<div class="composer">
 
     <div class="composer-container">
         <nav class="navbar navbar-fixed-top mobile-navbar visible-xs visible-sm">
