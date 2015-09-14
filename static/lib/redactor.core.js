@@ -16,8 +16,7 @@ define('redactor', [
 
         textarea.redactor({
             focus: true,
-            plugins: ['video'],
-			plugins: ['table']
+            plugins: ['video','table']
         });
     });
 
