@@ -14,25 +14,20 @@
 	var RLANG = {};
 	var path = "/plugins/nodebb-plugin-composer-redactor/images/";
 	var viewType = 'modal';
-	var emoticons = [
-		{
-		name: "Duck",
-	    src : path + "pato.gif",
-	    shortcode : ":duck:"
-		},
-	    {
-	    name: "Dance",
-	    src : path + "sirdance.gif",
-		shortcode : ":sirdance:"
-		},
-	    {
-	    name: "Laugh",
-	    src : path + "laughing.gif",
-		shortcode : "xD"
-		}
-		
-		
-	];
+	var emoticons = {
+		exodo: [
+			{ name: "Duck", src : path + "pato.gif", shortcode : ":duck:" },
+			{ name: "Duck", src : path + "pato.gif", shortcode : ":duck:" },
+			{ name: "Duck", src : path + "sirdance.gif", shortcode : ":sirdance:" },
+			{ name: "Laugh", src : path + "laughing.gif", shortcode : "xD" }
+		],
+		animals: [
+	    	{ name: "Dance", src : path + "sirdance.gif", shortcode : ":sirdance:" },
+	   	 	{ name: "Laugh", src : path + "laughing.gif", shortcode : "xD" }
+		]
+	};
+	
+	
 	
 	//if (typeof RedactorPlugins === 'undefined') {
 	 //   var RedactorPlugins = {};
@@ -50,23 +45,23 @@
             switch (viewType) {
                 case 'dropdown':
                     var mylist = {};
-                    for (var i = 0; i < emoticons.length; i++) {
-                        mylist[emoticons[i].name] = {
-                            title: '<img data-code="' + emoticons[i].shortcode + '" src="' + emoticons[i].src + '" alt="' + emoticons[i].name + '" title="' + emoticons[i].shortcode + '" style="cursor:pointer;">',
+					for (var key in emoticons){
+                    for (var i = 0; i < emoticons[key].length; i++) {
+                        mylist[emoticons[key][i].name] = {
+                            title: '<img data-code="' + emoticons[key][i].shortcode + '" src="' + emoticons[key][i].src + '" alt="' + emoticons[key][i].name + '" title="' + emoticons[key][i].shortcode + '" style="cursor:pointer;">',
                             callback: function(buttonName, buttonDOM, buttonObj) {
                                 that.chooseSmile(buttonName, buttonDOM, buttonObj);
                             },
                             className: 'redactor_smile'
                         }
                     }
+					}
                     this.button.add('emoticons', RLANG.emoticons, null, mylist
                             );
                     break
                 default:
 					var button = this.button.addAfter('image', 'emoticons', RLANG.emoticons);
-					//this.button.addCallback(button, this.video.show);
-                    //var button = this.button.add('emoticons', RLANG.emoticons);
-					 this.button.addCallback(button, function() {
+					this.button.addCallback(button, function() {
                         if (that.emoticons().replaceSmileys() === 0) {
                             that.emoticons().createModal();
                         }
@@ -84,14 +79,29 @@
         },
         createModal: function() {
             "use strict";
-            var modal = '<div id="emoticon_drawer" style="padding: 10px;"><ul style="margin: 0; padding: 0;">';
+            //var modal = '<div id="emoticon_drawer" style="padding: 10px;"><ul style="margin: 0; padding: 0;">';
 
-            for (var i = 0; i < emoticons.length; i++) {
-                modal += '<li style="display: inline-block; padding: 5px;"><img src="' + emoticons[i].src + '" alt="' + emoticons[i].name + '" title="' + emoticons[i].shortcode + '" style="cursor:pointer;"></li>';
-            }
-
-            modal += '</ul>';
-            modal += '</div>';
+			var modal = '<div class="modal-body" id="emoticon_drawer">
+        		<div class="tabbable"> 
+       	 			<ul class="nav nav-tabs">
+      	  				<li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
+      	  				<li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+       	 			</ul>
+        			<div class="tab-content">'
+			var tab = 0;
+			for (var key in emoticons){
+				tab++;
+				if(tab==1) {modal += '<div class="tab-pane active" id="tab' + tab + '">';}
+				else {modal += '<div class="tab-pane" id="tab' + tab + '">';}
+            for (var i = 0; i < emoticons[key].length; i++) {
+				
+                modal += '<li style="display: inline-block; padding: 5px;"><img src="' + emoticons[key][i].src + '" alt="' + emoticons[key][i].name + '" title="' + emoticons[key][i].shortcode + '" style="cursor:pointer;"></li>';
+            	
+			}
+				modal += '</div>';
+			}
+            
+            modal += '</div></div></div>';
 
             redactor.modal.addTemplate(RLANG.emoticons, modal);
             redactor.modal.addCallback(RLANG.emoticons, function() {
@@ -119,17 +129,19 @@
             var numberOfMatches = 0;
 
             //Replace all smileys within selected text.
-            for (var i = 0; i < emoticons.length; i++) {
+			for (var key in emoticons){
+            for (var i = 0; i < emoticons[key].length; i++) {
                 //Take the shortcode and escape any characters that have
                 //special meaning in regexp.
-                var smileyStr = (emoticons[i].shortcode + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
+                var smileyStr = (emoticons[key][i].shortcode + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
                 var pattern = new RegExp('(' + smileyStr + ')', 'g');
 
                 //Perform the match twice. Once to count number of
                 //occurrences, and once to do the replace.
                 numberOfMatches += (html.match(pattern) || []).length;
-                html = html.replace(pattern, '<img src="' + emoticons[i].src + '" alt="' + emoticons[i].name + '">');
+                html = html.replace(pattern, '<img src="' + emoticons[key][i].src + '" alt="' + emoticons[key][i].name + '">');
             }
+			}
 
             if (numberOfMatches > 0)
                 redactor.insert.html(html);
