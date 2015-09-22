@@ -119,7 +119,7 @@
 						<li><a href="#tab5" data-toggle="tab">Symbols</a></li>
 						<li><a href="#tab6" data-toggle="tab">Custom</a></li>
 				</ul>
-        			<div class="tab-content">'
+			<div class="tab-content">';
 			var tab = 0;
 			var converted_emoji;
 			//emojiones icons
