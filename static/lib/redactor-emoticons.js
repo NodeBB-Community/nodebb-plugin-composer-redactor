@@ -7,6 +7,7 @@
 
 (function($)
 {
+
 	$.Redactor.prototype.emoticons= function()
 	{
     var that = this;
