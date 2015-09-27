@@ -143,7 +143,7 @@
                         var modalContent = '<div class="redactor-tab emoji-selector-window redactor-tab' + tab + '"><ul>';
                         for (var i = 0; i < emoticons[key].length; i++) {
                             var converted_emoji = emojione.shortnameToImage(emoticons[key][i]).replace('<img', '<img class="emoji-selector-image" title="' + emoticons[key][i] + '"');
-                            modalContent += '<li style="display: inline-block; padding: 5px;">' + converted_emoji + '</li>';
+                            modalContent += '<li>' + converted_emoji + '</li>';
 
                         }
                         modalContent +="</ul></div>";
