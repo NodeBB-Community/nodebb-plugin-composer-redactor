@@ -13,7 +13,7 @@
         closeModal();
         redactor.selection.restore();
         redactor.buffer.set();
-        redactor.insert.html('<img class="emojione" src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '" title="' + $(this).attr('title') + '">', false);
+        redactor.insert.html('<img class="emojione" src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '" >', false);
         redactor.code.sync();
     };
     var closeModal = function(){
