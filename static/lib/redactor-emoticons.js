@@ -162,8 +162,8 @@
                         tab++;
                         var cModalContent = '<div class="redactor-tab redactor-tab' + tab + '"><ul>';
                         for (var c = 0; c < customs[ckey].length; c++) {
-                            cModalContent += '<li style="display: inline-block; padding: 5px;">';
-                            cModalContent += '<img class="emoji-selector-image" src="' + customs[ckey][c].src + '" alt="' + customs[ckey][c].name + '" title="' + customs[ckey][c].shortcode + '" style="cursor:pointer;"></li>';
+                            cModalContent += '<li>';
+                            cModalContent += '<img class="emoji-selector-image" src="' + customs[ckey][c].src + '" alt="' + customs[ckey][c].name + '" title="' + customs[ckey][c].shortcode + '"></li>';
 
                         }
                         cModalContent +="</ul></div>";
