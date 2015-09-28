@@ -160,7 +160,7 @@
                 for (var ckey in customs) {
                     if (customs.hasOwnProperty(ckey)) {
                         tab++;
-                        var cModalContent = '<div class="redactor-tab redactor-tab' + tab + '"><ul>';
+                        var cModalContent = '<div class="redactor-tab emoji-selector-window redactor-tab' + tab + '"><ul>';
                         for (var c = 0; c < customs[ckey].length; c++) {
                             cModalContent += '<li>';
                             cModalContent += '<img class="emoji-selector-image" src="' + customs[ckey][c].src + '" alt="' + customs[ckey][c].name + '" title="' + customs[ckey][c].shortcode + '"></li>';
