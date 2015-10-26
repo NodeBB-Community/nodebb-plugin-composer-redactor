@@ -142,6 +142,16 @@ define('redactor', [
         $.Redactor.opts.fileUploadParam = 'files[]';
     }
 
+    require(['translator'], function (translator) {
+        translator.getTranslations(config.userLang, 'redactor', function (langData) {
+            console.log(langData);
+            $.Redactor.opts.langs[config.userLang] = langData;
+            if (langData.html != undefined) {
+                $.Redactor.opts.lang = config.userLang;
+            }
+        });
+    });
+
     var redactor = {};
     redactor.addQuote = function (tid, pid, title, username, text) {
 
