@@ -1,43 +1,43 @@
 {
-  "id": "nodebb-plugin-composer-redactor",
-  "url": "https://github.com/NodeBB/nodebb-plugin-composer-redactor",
-  "library": "library.js",
-  "hooks": [
-	{"hook": "static:app.load", "method": "init"},
-	{"hook": "filter:admin.header.build", "method": "addAdminNavigation"},
-	{"hook": "filter:topic.post", "method": "sanitize"},
-	{"hook": "filter:topic.reply", "method": "sanitize"},
-	{"hook": "filter:post.edit", "method": "sanitize"}
-  ],
-  "staticDirs": {
-	"images": "./static/emoji"
-  },
-  "less": [
-	"../nodebb-plugin-composer-default/static/less/composer.less",
-	"./static/less/redactor.less",
-	"./static/less/redactor-overrides.less",
-	"./static/less/composer.less",
-	"./static/less/emoji.less"
-  ],
-  "scripts": [
-	"./static/lib/redactor.js",
-	"./static/lib/video.js",
-	"./static/lib/table.js",
-	"./static/lib/redactor-emoticons.js",
-	"./static/lib/emojione.min.js",
-	"./static/lib/client.js",
-	"./static/lib/redactor.core.js",
-	"../nodebb-plugin-composer-default/static/lib/composer.js",
-	"../nodebb-plugin-composer-default/static/lib/composer/categoryList.js",
-	"../nodebb-plugin-composer-default/static/lib/composer/controls.js",
-	"../nodebb-plugin-composer-default/static/lib/composer/drafts.js",
-	"../nodebb-plugin-composer-default/static/lib/composer/formatting.js",
-	"../nodebb-plugin-composer-default/static/lib/composer/preview.js",
-	"../nodebb-plugin-composer-default/static/lib/composer/resize.js",
-	"../nodebb-plugin-composer-default/static/lib/composer/tags.js",
-	"../nodebb-plugin-composer-default/static/lib/composer/uploads.js"
-  ],
-  "templates": "static/templates",
-  "languages": "languages",
-  "defaultLang": "en_GB"
+	"id": "nodebb-plugin-composer-redactor",
+	"url": "https://github.com/NodeBB/nodebb-plugin-composer-redactor",
+	"library": "library.js",
+	"hooks": [
+		{ "hook": "static:app.load", "method": "init" },
+		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
+		{ "hook": "filter:topic.post", "method": "sanitize" },
+		{ "hook": "filter:topic.reply", "method": "sanitize" },
+		{ "hook": "filter:post.edit", "method": "sanitize" }
+	],
+	"staticDirs": {
+	    "images": "./static/emoji"
+	},
+	"less": [
+		"../nodebb-plugin-composer-default/static/less/composer.less",
+		"./static/less/redactor.less",
+		"./static/less/redactor-overrides.less",
+		"./static/less/composer.less",
+		"./static/less/emoji.less"
+	],
+	"scripts": [
+		"./static/lib/redactor.js",
+		"./static/lib/video.js",
+		"./static/lib/table.js",
+		"./static/lib/redactor-emoticons.js",
+		"./static/lib/emojione.min.js",
+		"./static/lib/client.js",
+		"./static/lib/redactor.core.js",
+		"../nodebb-plugin-composer-default/static/lib/composer.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/categoryList.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/controls.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/drafts.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/formatting.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/preview.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/resize.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/tags.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/uploads.js"
+	],
+	"templates": "static/templates",
+	"languages": "languages",
+	"defaultLang": "en_GB"
 }
