@@ -2,7 +2,7 @@
 
 var controllers = require('./lib/controllers'),
 	SocketPlugins = require.main.require('./src/socket.io/plugins'),
-	defaultComposer = require.main.require('nodebb-plugin-composer-default'),
+	defaultComposer = module.parent.require('nodebb-plugin-composer-default'),
 	plugins = module.parent.exports,
 	meta = module.parent.require('./meta'),
 
