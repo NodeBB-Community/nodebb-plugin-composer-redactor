@@ -20,7 +20,7 @@
 			<div class="panel-heading">Compatibility Checks</div>
 			<div class="panel-body">
 				<ul class="list-group">
-					<li class="list-group-item list-group-item-<!-- IF checks.markdown -->success<!-- ELSE -->danger<!--ENDIF checks.markdown -->">
+					<li class="list-group-item list-group-item-<!-- IF checks.markdown -->success<!-- ELSE -->danger<!-- ENDIF checks.markdown -->">
 						<strong>Markdown Compatibility</strong>
 						<!-- IF checks.markdown -->
 						<span class="badge"><i class="fa fa-check"></i></span>
@@ -33,7 +33,7 @@
 						</p>
 						<!-- ENDIF checks.markdown -->
 					</li>
-					<li class="list-group-item list-group-item-<!-- IF checks.composer -->success<!-- ELSE -->danger<!--ENDIF checks.composer -->">
+					<li class="list-group-item list-group-item-<!-- IF checks.composer -->success<!-- ELSE -->danger<!-- ENDIF checks.composer -->">
 						<strong>Composer Conflicts</strong>
 						<!-- IF checks.composer -->
 						<span class="badge"><i class="fa fa-check"></i></span>
@@ -47,12 +47,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3">
+	<!--<div class="col-lg-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">Control Panel</div>
 			<div class="panel-body">
 				<button class="btn btn-primary" id="save">Save Settings</button>
 			</div>
 		</div>
-	</div>
+	</div>-->
 </div>
