@@ -28,6 +28,7 @@
 		"./static/lib/client.js",
 		"./static/lib/redactor.core.js",
 		"../nodebb-plugin-composer-default/static/lib/composer.js",
+		"../nodebb-plugin-composer-default/static/lib/composer/autocomplete.js",
 		"../nodebb-plugin-composer-default/static/lib/composer/categoryList.js",
 		"../nodebb-plugin-composer-default/static/lib/composer/controls.js",
 		"../nodebb-plugin-composer-default/static/lib/composer/drafts.js",
