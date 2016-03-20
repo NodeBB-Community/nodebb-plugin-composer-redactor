@@ -1,4 +1,4 @@
-<div class="composer">
+<div component="composer" class="composer<!-- IF resizable --> resizable<!-- ENDIF resizable -->"<!-- IF !disabled --> style="visibility: inherit;"<!-- ENDIF !disabled -->>
 
     <div class="composer-container">
         <nav class="navbar navbar-fixed-top mobile-navbar visible-xs visible-sm">
