@@ -25,8 +25,9 @@ define('redactor', [
         var activeComposer = $('#cmp-uuid-' + composer.active),
             editor = activeComposer.find('.redactor-editor');
 
-        editor.css('min-height', data.containerHeight);
-        editor.css('max-height', data.containerHeight);
+        // .redactor-editor class has 20px padding, so compensating...
+        editor.css('min-height', data.containerHeight - 40);
+        editor.css('max-height', data.containerHeight - 40);
     });
 
     // Button sugar
