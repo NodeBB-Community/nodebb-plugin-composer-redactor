@@ -74,10 +74,13 @@
                            placeholder="[[tags:enter_tags_here, {minimumTagLength}, {maximumTagLength}]]" tabindex="4"/>
                 </div>
                 <!-- IF allowTopicsThumbnail -->
-                  <i class="fa fa-th-large topic-thumb-btn topic-thumb-toggle-btn hide" title="[[topic:composer.thumb_title]]"></i>
                   <div class="topic-thumb-container center-block hide">
                     <form id="thumbForm" method="post" class="topic-thumb-form form-inline" enctype="multipart/form-data">
                       <img class="topic-thumb-preview"></img>
+                      <div class="form-group topic-thumb-ctrl visible-xs">
+                        <i class="fa fa-spinner fa-spin hide topic-thumb-spinner" title="[[topic:composer.uploading]]"></i>
+                        <i class="fa fa-times topic-thumb-btn hide topic-thumb-clear-btn" title="[[topic:composer.thumb_remove]]"></i>
+                      </div>
                       <div class="form-group">
                         <label for="topic-thumb-url">[[topic:composer.thumb_url_label]]</label>
                         <input type="text" id="topic-thumb-url" class="form-control" placeholder="[[topic:composer.thumb_url_placeholder]]" />
@@ -86,7 +89,7 @@
                         <label for="topic-thumb-file">[[topic:composer.thumb_file_label]]</label>
                         <input type="file" id="topic-thumb-file" class="form-control" />
                       </div>
-                      <div class="form-group topic-thumb-ctrl">
+                      <div class="form-group topic-thumb-ctrl hidden-xs">
                         <i class="fa fa-spinner fa-spin hide topic-thumb-spinner" title="[[topic:composer.uploading]]"></i>
                         <i class="fa fa-times topic-thumb-btn hide topic-thumb-clear-btn" title="[[topic:composer.thumb_remove]]"></i>
                       </div>

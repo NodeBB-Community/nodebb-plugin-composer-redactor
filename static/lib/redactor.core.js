@@ -16,9 +16,25 @@ define('redactor', [
 
         textarea.redactor({
             focus: true,
-            plugins: ['video','table','emoticons']
-			
+            plugins: ['video','table','emoticons','topic_thumb']
         });
+
+        if (config.allowTopicsThumbnail && data.composerData.isMain) {
+          var thumbToggleBtnEl = postContainer.find('.re-topic_thumb');
+          var url = data.composerData.topic_thumb || '';
+
+          postContainer.find('input#topic-thumb-url').val(url);
+          postContainer.find('img.topic-thumb-preview').attr('src', url);
+
+          if (url) {
+            postContainer.find('.topic-thumb-clear-btn').removeClass('hide');
+          }
+          thumbToggleBtnEl.addClass('show');
+          thumbToggleBtnEl.off('click').on('click', function() {
+            var container = postContainer.find('.topic-thumb-container');
+            container.toggleClass('hide', !container.hasClass('hide'));
+          });
+        }
     });
 
     $(window).on('action:composer.resize', function (ev, data) {
@@ -52,6 +68,19 @@ define('redactor', [
             };
         }
         $.Redactor.opts.plugins.push(name);
+    };
+
+    // Topic Thumb
+    $.Redactor.prototype.topic_thumb = function () {
+        return {
+            init: function () {
+              var that = this;
+              translator.translate('[[topic:composer.thumb_title]]', function (translated) {
+                that.button.add('topic_thumb', translated);
+                that.button.setAwesome('topic_thumb', 'fa-th-large topic-thumb-btn topic-thumb-toggle-btn');
+              });
+            }
+        };
     };
 
     //NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
