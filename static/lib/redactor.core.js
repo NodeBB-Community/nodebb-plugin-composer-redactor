@@ -14,10 +14,7 @@ define('redactor', [
         $(window).trigger('action:redactor.load', $.Redactor);
         $(window).off('action:redactor.load');
 
-        textarea.redactor({
-            focus: true,
-            plugins: ['video','table','emoticons','topic_thumb']
-        });
+        textarea.redactor();
 
         if (config.allowTopicsThumbnail && data.composerData.isMain) {
           var thumbToggleBtnEl = postContainer.find('.re-topic_thumb');
@@ -47,7 +44,6 @@ define('redactor', [
     });
 
     // Button sugar
-    $.Redactor.opts.plugins = [];
     $.Redactor.addButton = function (name, awesome, onClick) {
         if (typeof awesome === 'object') {
             $.Redactor.prototype[name] = function () {
@@ -83,10 +79,10 @@ define('redactor', [
         };
     };
 
-    //NodeBB https://github.com/NodeBB/nodebb-plugin-composer-redactor/issues/2
-    require(["csrf"], function (csrf) {
-        $.Redactor.opts.imageUploadHeaders = {'x-csrf-token': csrf.get()};
-    });
+    // Redactor Options
+    $.Redactor.opts.plugins = ['video','table','emoticons','topic_thumb'];
+    $.Redactor.opts.focus = true;
+    $.Redactor.opts.imageUploadHeaders = {'x-csrf-token': config.csrf_token};
     $.Redactor.opts.imageUpload = '/api/post/upload';
     $.Redactor.opts.imageUploadParam = 'files[]';
     $.Redactor.opts.imageUploadKey = 'url';
