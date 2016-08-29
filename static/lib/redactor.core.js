@@ -14,7 +14,21 @@ define('redactor', [
         $(window).trigger('action:redactor.load', $.Redactor);
         $(window).off('action:redactor.load');
 
-        textarea.redactor();
+        textarea.redactor({
+          uploadImageFields: {
+            'cid': '#cmp-cid-' + data.post_uuid,
+          },
+          uploadFileFields: {
+            'cid': '#cmp-cid-' + data.post_uuid,
+          }
+        });
+
+        var cidEl = postContainer.find('.category-list');
+        if (cidEl.length) {
+          cidEl.attr('id', 'cmp-cid-' + data.post_uuid);
+        } else {
+          postContainer.append('<input id="cmp-cid-' + data.post_uuid + '" type="hidden" value="' + ajaxify.data.cid + '"/>');
+        }
 
         if (config.allowTopicsThumbnail && data.composerData.isMain) {
           var thumbToggleBtnEl = postContainer.find('.re-topic_thumb');
@@ -86,7 +100,6 @@ define('redactor', [
     $.Redactor.opts.imageUpload = '/api/post/upload';
     $.Redactor.opts.imageUploadParam = 'files[]';
     $.Redactor.opts.imageUploadKey = 'url';
-
 
     var redactor = {};
     redactor.addQuote = function (tid, topicSlug, postIndex, pid, title, username, text) {
