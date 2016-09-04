@@ -101,6 +101,11 @@ define('redactor', [
     $.Redactor.opts.imageUploadParam = 'files[]';
     $.Redactor.opts.imageUploadKey = 'url';
 
+    if (config.allowFileUploads) {
+        $.Redactor.opts.fileUpload = '/api/post/upload';
+        $.Redactor.opts.fileUploadParam = 'files[]';
+    }
+
     var redactor = {};
     redactor.addQuote = function (tid, topicSlug, postIndex, pid, title, username, text) {
 
