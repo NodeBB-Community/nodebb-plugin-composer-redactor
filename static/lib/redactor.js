@@ -1,14 +1,14 @@
 /*
-	Redactor 10.2.3
-	Updated: August 15, 2015
+ Redactor 10.2.3
+ Updated: August 15, 2015
 
-	http://imperavi.com/redactor/
+ http://imperavi.com/redactor/
 
-	Copyright (c) 2009-2015, Imperavi LLC.
-	License: http://imperavi.com/redactor/license/
+ Copyright (c) 2009-2015, Imperavi LLC.
+ License: http://imperavi.com/redactor/license/
 
-	Usage: $('#content').redactor();
-*/
+ Usage: $('#content').redactor();
+ */
 
 (function($)
 {
@@ -94,11 +94,11 @@
 	$.Redactor = Redactor;
 	$.Redactor.VERSION = '10.2.3';
 	$.Redactor.modules = ['alignment', 'autosave', 'block', 'buffer', 'build', 'button',
-						  'caret', 'clean', 'code', 'core', 'dropdown', 'file', 'focus',
-						  'image', 'indent', 'inline', 'insert', 'keydown', 'keyup',
-						  'lang', 'line', 'link', 'linkify', 'list', 'modal', 'observe', 'paragraphize',
-						  'paste', 'placeholder', 'progress', 'selection', 'shortcuts',
-						  'tabifier', 'tidy',  'toolbar', 'upload', 'utils'];
+		'caret', 'clean', 'code', 'core', 'dropdown', 'file', 'focus',
+		'image', 'indent', 'inline', 'insert', 'keydown', 'keyup',
+		'lang', 'line', 'link', 'linkify', 'list', 'modal', 'observe', 'paragraphize',
+		'paste', 'placeholder', 'progress', 'selection', 'shortcuts',
+		'tabifier', 'tidy',  'toolbar', 'upload', 'utils'];
 
 	$.Redactor.opts = {
 
@@ -180,7 +180,7 @@
 
 		source: true,
 		buttons: ['html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist',
-				  'outdent', 'indent', 'image', 'file', 'link', 'alignment', 'horizontalrule'], // + 'underline'
+			'outdent', 'indent', 'image', 'file', 'link', 'alignment', 'horizontalrule'], // + 'underline'
 
 		buttonsHide: [],
 		buttonsHideOnMobile: [],
@@ -194,8 +194,8 @@
 		allowedTags: false, // or array
 
 		paragraphizeBlocks: ['table', 'div', 'pre', 'form', 'ul', 'ol', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'dl', 'blockquote', 'figcaption',
-							'address', 'section', 'header', 'footer', 'aside', 'article', 'object', 'style', 'script', 'iframe', 'select', 'input', 'textarea',
-							'button', 'option', 'map', 'area', 'math', 'hr', 'fieldset', 'legend', 'hgroup', 'nav', 'figure', 'details', 'menu', 'summary', 'p'],
+			'address', 'section', 'header', 'footer', 'aside', 'article', 'object', 'style', 'script', 'iframe', 'select', 'input', 'textarea',
+			'button', 'option', 'map', 'area', 'math', 'hr', 'fieldset', 'legend', 'hgroup', 'nav', 'figure', 'details', 'menu', 'summary', 'p'],
 
 		removeComments: false,
 		replaceTags: [
@@ -203,12 +203,12 @@
 			['b', 'strong']
 		],
 		replaceStyles: [
-            ['font-weight:\\s?bold', "strong"],
-            ['font-style:\\s?italic', "em"],
-            ['text-decoration:\\s?underline', "u"],
-            ['text-decoration:\\s?line-through', 'del']
-        ],
-        removeDataAttr: false,
+			['font-weight:\\s?bold', "strong"],
+			['font-style:\\s?italic', "em"],
+			['text-decoration:\\s?underline', "u"],
+			['text-decoration:\\s?line-through', 'del']
+		],
+		removeDataAttr: false,
 
 		removeAttr: false, // or multi array
 		allowedAttr: false, // or multi array
@@ -217,7 +217,7 @@
 		removeEmpty: ['p'], // or false;
 
 		activeButtons: ['deleted', 'italic', 'bold', 'underline', 'unorderedlist', 'orderedlist',
-						'alignleft', 'aligncenter', 'alignright', 'justify'],
+			'alignleft', 'aligncenter', 'alignright', 'justify'],
 		activeButtonsStates: {
 			b: 'bold',
 			strong: 'bold',
@@ -1281,7 +1281,7 @@
 					this.$editor = $('<div />');
 					this.$textarea = this.$element;
 					this.$box.insertAfter(this.$element).append(this.$editor).append(this.$element);
-					this.$editor.addClass('redactor-editor write');
+					this.$editor.addClass('redactor-editor');
 
 					this.$element.hide();
 				},
@@ -1290,7 +1290,7 @@
 					this.$editor = this.$element;
 					this.build.createTextarea();
 					this.$box.insertAfter(this.$editor).append(this.$editor).append(this.$textarea);
-					this.$editor.addClass('redactor-editor write');
+					this.$editor.addClass('redactor-editor');
 
 					this.$textarea.hide();
 				},
@@ -1923,16 +1923,16 @@
 				getOffset: function()
 				{
 					var offset = 0;
-				    var sel = window.getSelection();
+					var sel = window.getSelection();
 
-				    if (sel.rangeCount > 0)
-				    {
-				        var range = window.getSelection().getRangeAt(0);
-				        var caretRange = range.cloneRange();
-				        caretRange.selectNodeContents(this.$editor[0]);
-				        caretRange.setEnd(range.endContainer, range.endOffset);
-				        offset = caretRange.toString().length;
-				    }
+					if (sel.rangeCount > 0)
+					{
+						var range = window.getSelection().getRangeAt(0);
+						var caretRange = range.cloneRange();
+						caretRange.selectNodeContents(this.$editor[0]);
+						caretRange.setEnd(range.endContainer, range.endOffset);
+						offset = caretRange.toString().length;
+					}
 
 					return offset;
 				},
@@ -2297,8 +2297,8 @@
 								if (currentLevel == 1 && $.inArray(currentList, listsIds) == -1)
 								{
 									var $list = $("<" + listType + "/>").attr({"data-level": currentLevel,
-																			   "data-list": currentList})
-																	  .html($li);
+											"data-list": currentList})
+										.html($li);
 
 									$(this).replaceWith($list);
 
@@ -2323,8 +2323,8 @@
 										}
 
 										$lastList.attr({"data-level": currentLevel,
-														"data-list": currentList})
-												 .html($li);
+												"data-list": currentList})
+											.html($li);
 
 									}
 									else
@@ -2372,8 +2372,8 @@
 					html = html.replace(/<b(.*?)id="docs-internal-guid(.*?)">([\w\W]*?)<\/b>/gi, "$3");
 
 					// google docs styles
-			 		html = html.replace(/<span[^>]*(font-style: italic; font-weight: bold|font-weight: bold; font-style: italic)[^>]*>/gi, '<span style="font-weight: bold;"><span style="font-style: italic;">');
-			 		html = html.replace(/<span[^>]*font-style: italic[^>]*>/gi, '<span style="font-style: italic;">');
+					html = html.replace(/<span[^>]*(font-style: italic; font-weight: bold|font-weight: bold; font-style: italic)[^>]*>/gi, '<span style="font-weight: bold;"><span style="font-style: italic;">');
+					html = html.replace(/<span[^>]*font-style: italic[^>]*>/gi, '<span style="font-style: italic;">');
 					html = html.replace(/<span[^>]*font-weight: bold[^>]*>/gi, '<span style="font-weight: bold;">');
 					html = html.replace(/<span[^>]*text-decoration: underline[^>]*>/gi, '<span style="text-decoration: underline;">');
 
@@ -2408,21 +2408,21 @@
 				{
 					// remove all tags except these
 					var tags = ['span', 'a', 'pre', 'blockquote', 'small', 'em', 'strong', 'code', 'kbd', 'mark', 'address', 'cite', 'var', 'samp', 'dfn', 'sup', 'sub', 'b', 'i', 'u', 'del',
-								'ol', 'ul', 'li', 'dl', 'dt', 'dd', 'p', 'br', 'video', 'audio', 'iframe', 'embed', 'param', 'object', 'img', 'table',
-								'td', 'th', 'tr', 'tbody', 'tfoot', 'thead', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+						'ol', 'ul', 'li', 'dl', 'dt', 'dd', 'p', 'br', 'video', 'audio', 'iframe', 'embed', 'param', 'object', 'img', 'table',
+						'td', 'th', 'tr', 'tbody', 'tfoot', 'thead', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 					var tagsEmpty = false;
 					var attrAllowed =  [
-							['a', '*'],
-							['img', ['src', 'alt']],
-							['span', ['class', 'rel', 'data-verified']],
-							['iframe', '*'],
-							['video', '*'],
-							['audio', '*'],
-							['embed', '*'],
-							['object', '*'],
-							['param', '*'],
-							['source', '*']
-						];
+						['a', '*'],
+						['img', ['src', 'alt']],
+						['span', ['class', 'rel', 'data-verified']],
+						['iframe', '*'],
+						['video', '*'],
+						['audio', '*'],
+						['embed', '*'],
+						['object', '*'],
+						['param', '*'],
+						['source', '*']
+					];
 
 					if (type == 'all')
 					{
@@ -2446,14 +2446,14 @@
 					{
 						// remove all tags except these and remove all table tags: tr, td etc
 						tags = ['ul', 'ol', 'li', 'span', 'a', 'small', 'em', 'strong', 'code', 'kbd', 'mark', 'cite', 'var', 'samp', 'dfn', 'sup', 'sub', 'b', 'i', 'u', 'del',
-								'ol', 'ul', 'li', 'dl', 'dt', 'dd', 'br', 'iframe', 'video', 'audio', 'embed', 'param', 'object', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+							'ol', 'ul', 'li', 'dl', 'dt', 'dd', 'br', 'iframe', 'video', 'audio', 'embed', 'param', 'object', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
 					}
 					else if (type == 'li')
 					{
 						// only inline tags and ul, ol, li
 						tags = ['ul', 'ol', 'li', 'span', 'a', 'small', 'em', 'strong', 'code', 'kbd', 'mark', 'cite', 'var', 'samp', 'dfn', 'sup', 'sub', 'b', 'i', 'u', 'del', 'br',
-								'iframe', 'video', 'audio', 'embed', 'param', 'object', 'img'];
+							'iframe', 'video', 'audio', 'embed', 'param', 'object', 'img'];
 					}
 
 					var options = {
@@ -2523,12 +2523,12 @@
 				},
 				stripTags: function(input, allowed)
 				{
-				    allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
-				    var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
+					allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
+					var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
 
-				    return input.replace(tags, function ($0, $1) {
-				        return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
-				    });
+					return input.replace(tags, function ($0, $1) {
+						return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
+					});
 				},
 				savePreCode: function(html)
 				{
@@ -2985,9 +2985,9 @@
 							else
 							{
 								el.CodeMirror.setSelection({line: el.CodeMirror.posFromIndex(start).line,
-															ch: el.CodeMirror.posFromIndex(start).ch},
-														  {line: el.CodeMirror.posFromIndex(end).line,
-														   ch:  el.CodeMirror.posFromIndex(end).ch});
+										ch: el.CodeMirror.posFromIndex(start).ch},
+									{line: el.CodeMirror.posFromIndex(end).line,
+										ch:  el.CodeMirror.posFromIndex(end).ch});
 							}
 
 							el.CodeMirror.focus();
@@ -3696,15 +3696,15 @@
 						case 'left':
 							imageFloat = 'left';
 							imageMargin = '0 ' + this.opts.imageFloatMargin + ' ' + this.opts.imageFloatMargin + ' 0';
-						break;
+							break;
 						case 'right':
 							imageFloat = 'right';
 							imageMargin = '0 0 ' + this.opts.imageFloatMargin + ' ' + this.opts.imageFloatMargin;
-						break;
+							break;
 						case 'center':
 							imageDisplay = 'block';
 							imageMargin = 'auto';
-						break;
+							break;
 					}
 
 					$image.css({ 'float': imageFloat, display: imageDisplay, margin: imageMargin });
@@ -3805,21 +3805,21 @@
 				{
 					e.preventDefault();
 
-				    this.image.resizeHandle = {
-				        x : e.pageX,
-				        y : e.pageY,
-				        el : $image,
-				        ratio: $image.width() / $image.height(),
-				        h: $image.height()
-				    };
+					this.image.resizeHandle = {
+						x : e.pageX,
+						y : e.pageY,
+						el : $image,
+						ratio: $image.width() / $image.height(),
+						h: $image.height()
+					};
 
-				    e = e.originalEvent || e;
+					e = e.originalEvent || e;
 
-				    if (e.targetTouches)
-				    {
-				         this.image.resizeHandle.x = e.targetTouches[0].pageX;
-				         this.image.resizeHandle.y = e.targetTouches[0].pageY;
-				    }
+					if (e.targetTouches)
+					{
+						this.image.resizeHandle.x = e.targetTouches[0].pageX;
+						this.image.resizeHandle.y = e.targetTouches[0].pageY;
+					}
 
 					this.image.startResize();
 
@@ -3838,8 +3838,8 @@
 
 					var height = this.image.resizeHandle.h;
 
-		            if (e.targetTouches) height += (e.targetTouches[0].pageY -  this.image.resizeHandle.y);
-		            else height += (e.pageY -  this.image.resizeHandle.y);
+					if (e.targetTouches) height += (e.targetTouches[0].pageY -  this.image.resizeHandle.y);
+					else height += (e.pageY -  this.image.resizeHandle.y);
 
 					var width = Math.round(height * this.image.resizeHandle.ratio);
 
@@ -3848,10 +3848,10 @@
 					var height = Math.round(this.image.resizeHandle.el.width() / this.image.resizeHandle.ratio);
 
 					this.image.resizeHandle.el.attr({width: width, height: height});
-		            this.image.resizeHandle.el.width(width);
-		            this.image.resizeHandle.el.height(height);
+					this.image.resizeHandle.el.width(width);
+					this.image.resizeHandle.el.height(height);
 
-		            this.code.sync();
+					this.code.sync();
 				},
 				stopResize: function()
 				{
@@ -4526,13 +4526,13 @@
 							}
 
 
-						break;
+							break;
 						case 'style':
 
 							node[0].style.cssText = this.inline.value;
 							node.attr('data-redactor-style', this.inline.value);
 
-						break;
+							break;
 					}
 
 					return node;
@@ -4854,25 +4854,25 @@
 					var range;
 					if (document.caretPositionFromPoint)
 					{
-					    var pos = document.caretPositionFromPoint(x, y);
+						var pos = document.caretPositionFromPoint(x, y);
 
-					    this.range.setStart(pos.offsetNode, pos.offset);
-					    this.range.collapse(true);
-					    this.range.insertNode(node);
+						this.range.setStart(pos.offsetNode, pos.offset);
+						this.range.collapse(true);
+						this.range.insertNode(node);
 					}
 					else if (document.caretRangeFromPoint)
 					{
-					    range = document.caretRangeFromPoint(x, y);
-					    range.insertNode(node);
+						range = document.caretRangeFromPoint(x, y);
+						range.insertNode(node);
 					}
 					else if (typeof document.body.createTextRange != "undefined")
 					{
-				        range = document.body.createTextRange();
-				        range.moveToPoint(x, y);
-				        var endRange = range.duplicate();
-				        endRange.moveToPoint(x, y);
-				        range.setEndPoint("EndToEnd", endRange);
-				        range.select();
+						range = document.body.createTextRange();
+						range.moveToPoint(x, y);
+						var endRange = range.duplicate();
+						endRange.moveToPoint(x, y);
+						range.setEndPoint("EndToEnd", endRange);
+						range.select();
 					}
 				},
 				nodeToCaretPositionFromPoint: function(e, node)
@@ -4883,26 +4883,26 @@
 					var x = e.clientX, y = e.clientY;
 					if (document.caretPositionFromPoint)
 					{
-					    var pos = document.caretPositionFromPoint(x, y);
-					    var sel = document.getSelection();
-					    range = sel.getRangeAt(0);
-					    range.setStart(pos.offsetNode, pos.offset);
-					    range.collapse(true);
-					    range.insertNode(node);
+						var pos = document.caretPositionFromPoint(x, y);
+						var sel = document.getSelection();
+						range = sel.getRangeAt(0);
+						range.setStart(pos.offsetNode, pos.offset);
+						range.collapse(true);
+						range.insertNode(node);
 					}
 					else if (document.caretRangeFromPoint)
 					{
-					    range = document.caretRangeFromPoint(x, y);
-					    range.insertNode(node);
+						range = document.caretRangeFromPoint(x, y);
+						range.insertNode(node);
 					}
 					else if (typeof document.body.createTextRange != "undefined")
 					{
-				        range = document.body.createTextRange();
-				        range.moveToPoint(x, y);
-				        var endRange = range.duplicate();
-				        endRange.moveToPoint(x, y);
-				        range.setEndPoint("EndToEnd", endRange);
-				        range.select();
+						range = document.body.createTextRange();
+						range.moveToPoint(x, y);
+						var endRange = range.duplicate();
+						endRange.moveToPoint(x, y);
+						range.setEndPoint("EndToEnd", endRange);
+						range.select();
 					}
 
 				},
@@ -4953,7 +4953,7 @@
 					this.keydown.parent = this.selection.getParent();
 					this.keydown.block = this.selection.getBlock();
 
-			        // detect tags
+					// detect tags
 					this.keydown.pre = this.utils.isTag(this.keydown.current, 'pre');
 					this.keydown.blockquote = this.utils.isTag(this.keydown.current, 'blockquote');
 					this.keydown.figcaption = this.utils.isTag(this.keydown.current, 'figcaption');
@@ -5227,7 +5227,7 @@
 						return;
 					}
 
-				    this.core.addEvent('arrow');
+					this.core.addEvent('arrow');
 				},
 				setupBuffer: function(e, key)
 				{
@@ -5717,10 +5717,10 @@
 					this.buffer.set();
 
 					var blocks = this.selection.getBlocks();
- 					if (blocks[0] !== false && this.line.isExceptLastOrFirst(blocks))
-	 				{
-	 					if (!this.utils.browser('msie')) this.$editor.focus();
-	 					return;
+					if (blocks[0] !== false && this.line.isExceptLastOrFirst(blocks))
+					{
+						if (!this.utils.browser('msie')) this.$editor.focus();
+						return;
 					}
 
 					if (this.utils.browser('msie'))
@@ -6172,7 +6172,7 @@
 							}
 
 							$(this).before(text.replace(text, html))
-								   .remove();
+								.remove();
 						});
 
 
@@ -6463,41 +6463,41 @@
 					this.opts.modal = {
 						imageEdit: String()
 						+ '<section id="redactor-modal-image-edit">'
-							+ '<label>' + this.lang.get('title') + '</label>'
-							+ '<input type="text" id="redactor-image-title" />'
-							+ '<label class="redactor-image-link-option">' + this.lang.get('link') + '</label>'
-							+ '<input type="text" id="redactor-image-link" class="redactor-image-link-option" aria-label="' + this.lang.get('link') + '" />'
-							+ '<label class="redactor-image-link-option"><input type="checkbox" id="redactor-image-link-blank" aria-label="' + this.lang.get('link_new_tab') + '"> ' + this.lang.get('link_new_tab') + '</label>'
-							+ '<label class="redactor-image-position-option">' + this.lang.get('image_position') + '</label>'
-							+ '<select class="redactor-image-position-option" id="redactor-image-align" aria-label="' + this.lang.get('image_position') + '">'
-								+ '<option value="none">' + this.lang.get('none') + '</option>'
-								+ '<option value="left">' + this.lang.get('left') + '</option>'
-								+ '<option value="center">' + this.lang.get('center') + '</option>'
-								+ '<option value="right">' + this.lang.get('right') + '</option>'
-							+ '</select>'
+						+ '<label>' + this.lang.get('title') + '</label>'
+						+ '<input type="text" id="redactor-image-title" />'
+						+ '<label class="redactor-image-link-option">' + this.lang.get('link') + '</label>'
+						+ '<input type="text" id="redactor-image-link" class="redactor-image-link-option" aria-label="' + this.lang.get('link') + '" />'
+						+ '<label class="redactor-image-link-option"><input type="checkbox" id="redactor-image-link-blank" aria-label="' + this.lang.get('link_new_tab') + '"> ' + this.lang.get('link_new_tab') + '</label>'
+						+ '<label class="redactor-image-position-option">' + this.lang.get('image_position') + '</label>'
+						+ '<select class="redactor-image-position-option" id="redactor-image-align" aria-label="' + this.lang.get('image_position') + '">'
+						+ '<option value="none">' + this.lang.get('none') + '</option>'
+						+ '<option value="left">' + this.lang.get('left') + '</option>'
+						+ '<option value="center">' + this.lang.get('center') + '</option>'
+						+ '<option value="right">' + this.lang.get('right') + '</option>'
+						+ '</select>'
 						+ '</section>',
 
 						image: String()
 						+ '<section id="redactor-modal-image-insert">'
-							+ '<div id="redactor-modal-image-droparea"></div>'
- 						+ '</section>',
+						+ '<div id="redactor-modal-image-droparea"></div>'
+						+ '</section>',
 
 						file: String()
 						+ '<section id="redactor-modal-file-insert">'
-							+ '<div id="redactor-modal-file-upload-box">'
-								+ '<label>' + this.lang.get('filename') + '</label>'
-								+ '<input type="text" id="redactor-filename" aria-label="' + this.lang.get('filename') + '" /><br><br>'
-								+ '<div id="redactor-modal-file-upload"></div>'
-							+ '</div>'
+						+ '<div id="redactor-modal-file-upload-box">'
+						+ '<label>' + this.lang.get('filename') + '</label>'
+						+ '<input type="text" id="redactor-filename" aria-label="' + this.lang.get('filename') + '" /><br><br>'
+						+ '<div id="redactor-modal-file-upload"></div>'
+						+ '</div>'
 						+ '</section>',
 
 						link: String()
 						+ '<section id="redactor-modal-link-insert">'
-							+ '<label>URL</label>'
-							+ '<input type="url" id="redactor-link-url" aria-label="URL" />'
-							+ '<label>' + this.lang.get('text') + '</label>'
-							+ '<input type="text" id="redactor-link-url-text" aria-label="' + this.lang.get('text') + '" />'
-							+ '<label><input type="checkbox" id="redactor-link-blank"> ' + this.lang.get('link_new_tab') + '</label>'
+						+ '<label>URL</label>'
+						+ '<input type="url" id="redactor-link-url" aria-label="URL" />'
+						+ '<label>' + this.lang.get('text') + '</label>'
+						+ '<input type="text" id="redactor-link-url-text" aria-label="' + this.lang.get('text') + '" />'
+						+ '<label><input type="checkbox" id="redactor-link-blank"> ' + this.lang.get('link_new_tab') + '</label>'
 						+ '</section>'
 					};
 
@@ -7511,27 +7511,27 @@
 
 					if (this.range.collapsed === false)
 					{
-					   if (window.getSelection) {
-					        var sel = window.getSelection();
-					        if (sel.rangeCount > 0) {
+						if (window.getSelection) {
+							var sel = window.getSelection();
+							if (sel.rangeCount > 0) {
 
-					            var range = sel.getRangeAt(0);
-					            var startPointNode = range.startContainer, startOffset = range.startOffset;
+								var range = sel.getRangeAt(0);
+								var startPointNode = range.startContainer, startOffset = range.startOffset;
 
-					            var boundaryRange = range.cloneRange();
-					            boundaryRange.collapse(false);
-					            boundaryRange.insertNode(endNode);
-					            boundaryRange.setStart(startPointNode, startOffset);
-					            boundaryRange.collapse(true);
-					            boundaryRange.insertNode(startNode);
+								var boundaryRange = range.cloneRange();
+								boundaryRange.collapse(false);
+								boundaryRange.insertNode(endNode);
+								boundaryRange.setStart(startPointNode, startOffset);
+								boundaryRange.collapse(true);
+								boundaryRange.insertNode(startNode);
 
-					            // Reselect the original text
-					            range.setStartAfter(startNode);
-					            range.setEndBefore(endNode);
-					            sel.removeAllRanges();
-					            sel.addRange(range);
-					        }
-					    }
+								// Reselect the original text
+								range.setStartAfter(startNode);
+								range.setEndBefore(endNode);
+								sel.removeAllRanges();
+								sel.addRange(range);
+							}
+						}
 					}
 					else
 					{
@@ -7906,13 +7906,13 @@
 					this.tabifier.newLevel = new RegExp('^</?(' + newLevel.join('|' ) + ')[ >]');
 
 					var i = 0,
-					codeLength = code.length,
-					point = 0,
-					start = null,
-					end = null,
-					tag = '',
-					out = '',
-					cont = '';
+						codeLength = code.length,
+						point = 0,
+						start = null,
+						end = null,
+						tag = '',
+						out = '',
+						cont = '';
 
 					this.tabifier.cleanlevel = 0;
 
@@ -8354,10 +8354,10 @@
 						text = text.replace(/&nbsp;/gi, '');
 						text = text.replace(/\s/g, '');
 
-		    	    	if (text === '' && $el.children().length === 0)
-		    	    	{
-			    	    	$el.remove();
-		    	    	}
+						if (text === '' && $el.children().length === 0)
+						{
+							$el.remove();
+						}
 					});
 				},
 				removeParagraphsInLists: function()
@@ -8608,14 +8608,14 @@
 
 						if (btnName === 'file')
 						{
-							 if (this.opts.fileUpload === false) return;
-							 else if (!this.opts.fileUpload && this.opts.s3 === false) return;
+							if (this.opts.fileUpload === false) return;
+							else if (!this.opts.fileUpload && this.opts.s3 === false) return;
 						}
 
 						if (btnName === 'image')
 						{
-							 if (this.opts.imageUpload === false) return;
-							 else if (!this.opts.imageUpload && this.opts.s3 === false) return;
+							if (this.opts.imageUpload === false) return;
+							else if (!this.opts.imageUpload && this.opts.s3 === false) return;
 						}
 
 						var btnObject = this.opts.toolbar[btnName];
@@ -8893,9 +8893,9 @@
 					// complete
 					xhr.onreadystatechange = $.proxy(function()
 					{
-					    if (xhr.readyState == 4)
-					    {
-					        var data = xhr.responseText;
+						if (xhr.readyState == 4)
+						{
+							var data = xhr.responseText;
 
 							data = data.replace(/^\[/, '');
 							data = data.replace(/\]$/, '');
@@ -8924,21 +8924,21 @@
 							this.utils.imageKeyTransform(json);
 
 							this.upload.callback(json, this.upload.direct, e);
-					    }
+						}
 					}, this);
 
 
 					/*
-					xhr.upload.onprogress = $.proxy(function(e)
-					{
-						if (e.lengthComputable)
-						{
-							var complete = (e.loaded / e.total * 100 | 0);
-							//progress.value = progress.innerHTML = complete;
-						}
+					 xhr.upload.onprogress = $.proxy(function(e)
+					 {
+					 if (e.lengthComputable)
+					 {
+					 var complete = (e.loaded / e.total * 100 | 0);
+					 //progress.value = progress.innerHTML = complete;
+					 }
 
-					}, this);
-					*/
+					 }, this);
+					 */
 
 
 					xhr.send(formData);
@@ -9053,8 +9053,8 @@
 
 								if (!s3file[0])
 								{
-									 // url parsing is fail
-									 return false;
+									// url parsing is fail
+									return false;
 								}
 
 
@@ -9410,14 +9410,14 @@
 				{
 					var ua = navigator.userAgent.toLowerCase();
 					var match = /(opr)[\/]([\w.]+)/.exec( ua ) ||
-		            /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
-		            /(webkit)[ \/]([\w.]+).*(safari)[ \/]([\w.]+)/.exec(ua) ||
-		            /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
-		            /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
-		            /(msie) ([\w.]+)/.exec( ua ) ||
-		            ua.indexOf("trident") >= 0 && /(rv)(?::| )([\w.]+)/.exec( ua ) ||
-		            ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
-		            [];
+						/(chrome)[ \/]([\w.]+)/.exec( ua ) ||
+						/(webkit)[ \/]([\w.]+).*(safari)[ \/]([\w.]+)/.exec(ua) ||
+						/(webkit)[ \/]([\w.]+)/.exec( ua ) ||
+						/(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
+						/(msie) ([\w.]+)/.exec( ua ) ||
+						ua.indexOf("trident") >= 0 && /(rv)(?::| )([\w.]+)/.exec( ua ) ||
+						ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
+						[];
 
 					if (browser == 'safari') return (typeof match[3] != 'undefined') ? match[3] == 'safari' : false;
 					if (browser == 'version') return match[2];

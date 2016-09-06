@@ -47,6 +47,7 @@ define('redactor', [
             container.toggleClass('hide', !container.hasClass('hide'));
           });
         }
+        postContainer.find('.redactor-editor').addClass('write');
         autocomplete.init(postContainer);
     });
 
