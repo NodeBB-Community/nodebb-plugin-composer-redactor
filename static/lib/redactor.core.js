@@ -4,8 +4,9 @@
 
 define('redactor', [
     'composer',
-    'translator'
-], function (composer, translator) {
+    'translator',
+    'composer/autocomplete'
+], function (composer, translator, autocomplete) {
 
     $(window).on('action:composer.loaded', function (ev, data) {
         var postContainer = $('#cmp-uuid-' + data.post_uuid),
@@ -46,6 +47,7 @@ define('redactor', [
             container.toggleClass('hide', !container.hasClass('hide'));
           });
         }
+        autocomplete.init(postContainer);
     });
 
     $(window).on('action:composer.resize', function (ev, data) {

@@ -1281,7 +1281,7 @@
 					this.$editor = $('<div />');
 					this.$textarea = this.$element;
 					this.$box.insertAfter(this.$element).append(this.$editor).append(this.$element);
-					this.$editor.addClass('redactor-editor');
+					this.$editor.addClass('redactor-editor write');
 
 					this.$element.hide();
 				},
@@ -1290,7 +1290,7 @@
 					this.$editor = this.$element;
 					this.build.createTextarea();
 					this.$box.insertAfter(this.$editor).append(this.$editor).append(this.$textarea);
-					this.$editor.addClass('redactor-editor');
+					this.$editor.addClass('redactor-editor write');
 
 					this.$textarea.hide();
 				},
