@@ -5,8 +5,9 @@
 define('redactor', [
     'composer',
     'translator',
-    'composer/autocomplete'
-], function (composer, translator, autocomplete) {
+    'composer/autocomplete',
+    'composer/resize'
+], function (composer, translator, autocomplete, resize) {
 
     $(window).on('action:composer.loaded', function (ev, data) {
         var postContainer = $('#cmp-uuid-' + data.post_uuid),
@@ -49,6 +50,7 @@ define('redactor', [
         }
         postContainer.find('.redactor-editor').addClass('write');
         autocomplete.init(postContainer);
+        resize.reposition(postContainer);
     });
 
     $(window).on('action:composer.resize', function (ev, data) {
@@ -137,9 +139,8 @@ define('redactor', [
         }
 
         function onTranslated(translated) {
-            composer.posts[uuid].body = (prevText.length ? prevText + '\n\n' : '') + translated + text;
-            bodyEl.val(composer.posts[uuid].body);
-            focusElements(bodyEl);
+            composer.posts[uuid].body = (prevText.length ? prevText + '\n\n' : '') + translated + text + '\n\n';
+            bodyEl.redactor('insert.html', translated + text + '\n\n');
         }
     };
     return redactor;
