@@ -2,14 +2,17 @@
 
     <div class="composer-container">
         <nav class="navbar navbar-fixed-top mobile-navbar visible-xs visible-sm">
-			<span class="pull-left">
-				<button class="btn btn-primary composer-discard" data-action="discard" tabindex="-1"><i
-                            class="fa fa-times"></i></button>
-			</span>
-			<span class="pull-right">
-				<button class="btn btn-primary composer-submit" data-action="post" tabindex="-1"><i
-                            class="fa fa-chevron-right"></i></button>
-			</span>
+		<div class="pull-left">
+			<button class="btn btn-sm btn-primary composer-discard" data-action="discard" tabindex="-1"><i class="fa fa-times"></i></button>
+		</div>
+		<!-- IF isTopic -->
+		<div class="category-name-container">
+			<span class="category-name"></span> <i class="fa fa-sort"></i>
+		</div>
+		<!-- ENDIF isTopic -->
+		<div class="pull-right">
+			<button class="btn btn-sm btn-primary composer-submit" data-action="post" tabindex="-1"><i class="fa fa-chevron-right"></i></button>
+		</div>
         </nav>
         <div class="title-container row">
             <!-- IF showHandleInput -->
@@ -35,7 +38,7 @@
                 <!-- ENDIF isTopicOrMain -->
             </div>
             <!-- IF isTopic -->
-            <div class="category-list-container col-lg-3 col-md-12">
+            <div class="category-list-container col-lg-3 col-md-12 hidden-sm hidden-xs">
                 <select tabindex="3" class="form-control category-list"></select>
             </div>
             <!-- ENDIF isTopic -->
@@ -108,7 +111,11 @@
 		        </span>
             </span>
 		</span>
-
+	
+	<!-- IF isTopic -->
+	<ul class="category-selector visible-xs visible-sm"></ul>
+	<!-- ENDIF isTopic -->
+		
         <div class="resizer">
             <div class="trigger text-center"><i class="fa"></i></div>
         </div>
