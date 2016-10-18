@@ -5,9 +5,11 @@ var controllers = require('./lib/controllers'),
 	defaultComposer = module.parent.require('nodebb-plugin-composer-default'),
 	plugins = module.parent.exports,
 	meta = module.parent.require('./meta'),
+	helpers = module.parent.require('./controllers/helpers'),
 
 	async = module.parent.require('async'),
 	winston = module.parent.require('winston'),
+	nconf = module.parent.require('nconf'),
 
 	sanitize = require('sanitize-html'),
 
@@ -97,5 +99,27 @@ plugin.sanitize = function(data, callback) {
 	}
 	callback(null, data);
 };
+
+plugin.build = function(data, callback) {
+	// No plans for a standalone composer route, so handle redirection on f5
+	var req = data.req;
+	var res = data.res;
+
+	if (req.query.p) {
+		if (!res.locals.isAPI) {
+			if (req.query.p.startsWith(nconf.get('relative_path'))) {
+				req.query.p = req.query.p.replace(nconf.get('relative_path'), '');
+			}
+
+			return helpers.redirect(res, req.query.p);
+		} else {
+			return res.render('', {});
+		}
+	} else if (!req.query.pid && !req.query.tid && !req.query.cid) {
+		return helpers.redirect(res, '/');
+	}
+
+	callback(null, data);
+}
 
 module.exports = plugin;
