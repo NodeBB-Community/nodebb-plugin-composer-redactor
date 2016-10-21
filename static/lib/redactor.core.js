@@ -115,13 +115,19 @@ define('redactor', [
     redactor.addQuote = function (tid, topicSlug, postIndex, pid, title, username, text) {
 
         var uuid = composer.findByTid(tid) || composer.active;
+        var escapedTitle = (title || '').replace(/([\\`*_{}\[\]()#+\-.!])/g, '\\$1').replace(/\[/g, '&#91;').replace(/\]/g, '&#93;').replace(/%/g, '&#37;').replace(/,/g, '&#44;');
 
         if (text) {
             text = "<blockquote>" + text + "</blockquote>";
         }
 
         if (uuid === undefined) {
-            composer.newReply(tid, pid, title, '[[modules:composer.user_said, ' + username + ']]\n' + text);
+            if (title && topicSlug && postIndex) {
+                link = '[' + escapedTitle + '](' + config.relative_path + '/post/' + pid + ')';
+                composer.newReply(tid, pid, title, '[[modules:composer.user_said_in, ' + username + ', ' + link + ']]\n' + text);
+            } else {
+                composer.newReply(tid, pid, title, '[[modules:composer.user_said, ' + username + ']]\n' + text);
+            }
             return;
         } else if (uuid !== composer.active) {
             // If the composer is not currently active, activate it
@@ -131,7 +137,7 @@ define('redactor', [
         var postContainer = $('#cmp-uuid-' + uuid);
         var bodyEl = postContainer.find('textarea');
         var prevText = bodyEl.val();
-        if (parseInt(tid, 10) !== parseInt(composer.posts[uuid].tid, 10)) {
+        if (title && topicSlug && postIndex) {
             var link = '[' + title + '](/topic/' + topicSlug + '/' + (parseInt(postIndex, 10) + 1) + ')';
             translator.translate('[[modules:composer.user_said_in, ' + username + ', ' + link + ']]\n', config.defaultLang, onTranslated);
         } else {
