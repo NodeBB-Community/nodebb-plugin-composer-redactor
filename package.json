@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-composer-redactor",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "Redactor Composer for NodeBB",
   "main": "library.js",
   "repository": {
