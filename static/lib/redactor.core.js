@@ -100,7 +100,7 @@ define('redactor', [
 
     // Redactor Options
     $.Redactor.opts.plugins = ['video','table','emoticons','topic_thumb'];
-    $.Redactor.opts.focus = true;
+    $.Redactor.opts.focusEnd = true;
     $.Redactor.opts.imageUploadHeaders = {'x-csrf-token': config.csrf_token};
     $.Redactor.opts.imageUpload = '/api/post/upload';
     $.Redactor.opts.imageUploadParam = 'files[]';
@@ -123,10 +123,9 @@ define('redactor', [
 
         if (uuid === undefined) {
             if (title && topicSlug && postIndex) {
-                link = '[' + escapedTitle + '](' + config.relative_path + '/post/' + pid + ')';
-                composer.newReply(tid, pid, title, '[[modules:composer.user_said_in, ' + username + ', ' + link + ']]\n' + text);
+                composer.newReply(tid, pid, title, '<a href="' + config.relative_path + '/post/' + pid + '">' + username + ' said</a>:\n' + text + '<p>&nbsp;</p>');
             } else {
-                composer.newReply(tid, pid, title, '[[modules:composer.user_said, ' + username + ']]\n' + text);
+                composer.newReply(tid, pid, title, '[[modules:composer.user_said, ' + username + ']]\n' + text + '<p>&nbsp;</p>');
             }
             return;
         } else if (uuid !== composer.active) {
@@ -139,14 +138,15 @@ define('redactor', [
         var prevText = bodyEl.val();
         if (title && topicSlug && postIndex) {
             var link = '[' + title + '](/topic/' + topicSlug + '/' + (parseInt(postIndex, 10) + 1) + ')';
-            translator.translate('[[modules:composer.user_said_in, ' + username + ', ' + link + ']]\n', config.defaultLang, onTranslated);
+            translator.translate('<a href="' + config.relative_path + '/post/' + pid + '">' + username + ' said</a>:\n', config.defaultLang, onTranslated);
         } else {
             translator.translate('[[modules:composer.user_said, ' + username + ']]\n', config.defaultLang, onTranslated);
         }
 
         function onTranslated(translated) {
-            composer.posts[uuid].body = (prevText.length ? prevText + '\n\n' : '') + translated + text + '\n\n';
-            bodyEl.redactor('insert.html', translated + text + '\n\n');
+            composer.posts[uuid].body = (prevText.length ? prevText + '\n\n' : '') + translated + text + '<p>&nbsp;</p>';
+            bodyEl.redactor('insert.html', translated + text + '<p>&nbsp;</p>');
+            bodyEl.redactor('focus.setEnd');
         }
     };
     return redactor;
