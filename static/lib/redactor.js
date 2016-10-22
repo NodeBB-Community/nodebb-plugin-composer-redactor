@@ -3416,7 +3416,7 @@
 						{
 							var top = ($button.innerHeight() + keyPosition.top) + 'px';
 
-							$dropdown.css({ position: 'absolute', left: left, top: top }).show();
+							$dropdown.css({ position: 'fixed', left: left, top: top }).show();
 						}
 
 						this.core.setCallback('dropdownShown', { dropdown: $dropdown, key: key, button: $button });
