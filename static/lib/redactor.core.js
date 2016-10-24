@@ -49,6 +49,9 @@ define('redactor', [
           });
         }
         postContainer.find('.redactor-editor').addClass('write');
+        postContainer.find('.redactor-editor').on('mousewheel', function(e) {
+            e.stopPropagation();
+        });
         autocomplete.init(postContainer);
         resize.reposition(postContainer);
     });
@@ -98,8 +101,23 @@ define('redactor', [
         };
     };
 
+    $.Redactor.prototype.underline = function()
+    {
+        return {
+            init: function()
+            {
+                var button = this.button.addAfter('italic', 'underline', 'U');
+                this.button.addCallback(button, this.underline.format);
+            },
+            format: function()
+            {
+                this.inline.format('u');
+            }
+        };
+    };
+
     // Redactor Options
-    $.Redactor.opts.plugins = ['video','table','emoticons','topic_thumb'];
+    $.Redactor.opts.plugins = ['video','table','emoticons','topic_thumb', 'underline'];
     $.Redactor.opts.focusEnd = true;
     $.Redactor.opts.imageUploadHeaders = {'x-csrf-token': config.csrf_token};
     $.Redactor.opts.imageUpload = '/api/post/upload';
