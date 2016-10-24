@@ -6,8 +6,9 @@ define('redactor', [
     'composer',
     'translator',
     'composer/autocomplete',
-    'composer/resize'
-], function (composer, translator, autocomplete, resize) {
+    'composer/resize',
+    'scrollStop'
+], function (composer, translator, autocomplete, resize, scrollStop) {
 
     $(window).on('action:composer.loaded', function (ev, data) {
         var postContainer = $('#cmp-uuid-' + data.post_uuid),
@@ -49,6 +50,8 @@ define('redactor', [
           });
         }
         postContainer.find('.redactor-editor').addClass('write');
+
+        scrollStop.apply(postContainer.find('.redactor-editor'));
         autocomplete.init(postContainer);
         resize.reposition(postContainer);
     });
