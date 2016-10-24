@@ -49,9 +49,6 @@ define('redactor', [
           });
         }
         postContainer.find('.redactor-editor').addClass('write');
-        postContainer.find('.redactor-editor').on('mousewheel', function(e) {
-            e.stopPropagation();
-        });
         autocomplete.init(postContainer);
         resize.reposition(postContainer);
     });
