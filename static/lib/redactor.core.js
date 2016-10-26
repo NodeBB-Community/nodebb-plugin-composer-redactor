@@ -117,7 +117,7 @@ define('redactor', [
     };
 
     // Redactor Options
-    $.Redactor.opts.plugins = ['video','table','emoticons','topic_thumb', 'underline'];
+    $.Redactor.opts.plugins = ['table','emoticons','topic_thumb', 'underline'];
     $.Redactor.opts.focusEnd = true;
     $.Redactor.opts.imageUploadHeaders = {'x-csrf-token': config.csrf_token};
     $.Redactor.opts.imageUpload = '/api/post/upload';
