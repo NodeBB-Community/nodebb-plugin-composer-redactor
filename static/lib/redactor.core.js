@@ -49,10 +49,12 @@ define('redactor', [
             container.toggleClass('hide', !container.hasClass('hide'));
           });
         }
+
         postContainer.find('.redactor-editor').addClass('write');
 
         scrollStop.apply(postContainer.find('.redactor-editor'));
         autocomplete.init(postContainer);
+
         resize.reposition(postContainer);
     });
 
@@ -65,37 +67,14 @@ define('redactor', [
         editor.css('max-height', data.containerHeight - 40);
     });
 
-    // Button sugar
-    $.Redactor.addButton = function (name, awesome, onClick) {
-        if (typeof awesome === 'object') {
-            $.Redactor.prototype[name] = function () {
-                return awesome;
-            };
-        } else {
-            $.Redactor.prototype[name] = function () {
-                return {
-                    init: function () {
-                        var button = this.button.add(name.toLowerCase().replace(/ /g, '-'), name);
-                        if (awesome) this.button.setAwesome(name.toLowerCase().replace(/ /g, '-'), awesome);
-                        this.button.addCallback(button, this[name].onClick);
-                    },
-                    onClick: function () {
-                        onClick(this);
-                    }
-                };
-            };
-        }
-        $.Redactor.opts.plugins.push(name);
-    };
-
     // Topic Thumb
     $.Redactor.prototype.topic_thumb = function () {
         return {
             init: function () {
               var that = this;
               translator.translate('[[topic:composer.thumb_title]]', function (translated) {
-                that.button.add('topic_thumb', translated);
-                that.button.setAwesome('topic_thumb', 'fa-th-large topic-thumb-btn topic-thumb-toggle-btn');
+                var btnEl = that.button.add('topic_thumb', translated);
+                that.button.setIcon(btnEl, '<i class="fa fa-th-large topic-thumb-btn topic-thumb-toggle-btn"></i>');
               });
             }
         };
@@ -117,7 +96,7 @@ define('redactor', [
     };
 
     // Redactor Options
-    $.Redactor.opts.plugins = ['table','emoticons','topic_thumb', 'underline'];
+    $.Redactor.opts.plugins = ['iconic', 'table', 'topic_thumb', 'underline'];
     $.Redactor.opts.focusEnd = true;
     $.Redactor.opts.imageUploadHeaders = {'x-csrf-token': config.csrf_token};
     $.Redactor.opts.imageUpload = '/api/post/upload';
