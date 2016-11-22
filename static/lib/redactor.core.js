@@ -58,15 +58,6 @@ define('redactor', [
         resize.reposition(postContainer);
     });
 
-    $(window).on('action:composer.resize', function (ev, data) {
-        var activeComposer = $('#cmp-uuid-' + composer.active),
-            editor = activeComposer.find('.redactor-editor');
-
-        // .redactor-editor class has 20px padding, so compensating...
-        editor.css('min-height', data.containerHeight - 40);
-        editor.css('max-height', data.containerHeight - 40);
-    });
-
     // Topic Thumb
     $.Redactor.prototype.topic_thumb = function () {
         return {

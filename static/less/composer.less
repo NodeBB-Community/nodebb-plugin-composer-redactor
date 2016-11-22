@@ -1,10 +1,15 @@
-.composer .write-container {
-	display: flex;
-	align-items: stretch;
-	flex-direction: row;
-	margin: 0;
+.composer {
+	.write-container {
+		margin: 0;
+	}
 
 	.redactor-box {
+		flex: 2;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.redactor-editor {
 		flex: 2;
 	}
 }
@@ -14,6 +19,6 @@
 }
 
 /* Safari bug.. */
-.composer{
-	-webkit-user-select: initial;
+.composer {
+	user-select: initial;
 }
