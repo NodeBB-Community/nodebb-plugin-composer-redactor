@@ -58,6 +58,11 @@ define('redactor', [
         resize.reposition(postContainer);
     });
 
+    $(window).on('action:composer.submit', function (e, data) {
+        // Remove all empty paragraph blocks from composer content
+        data.composerData.content = data.composerData.content.replace(/<p>(<br>| )+<\/p>/gm, '');
+    });
+
     // Topic Thumb
     $.Redactor.prototype.topic_thumb = function () {
         return {
@@ -134,7 +139,7 @@ define('redactor', [
         function onTranslated(translated) {
             composer.posts[uuid].body = (prevText.length ? prevText + '\n\n' : '') + translated + text + '<p>&nbsp;</p>';
             bodyEl.redactor('insert.html', translated + text + '<p>&nbsp;</p>');
-            bodyEl.redactor('focus.setEnd');
+            bodyEl.redactor('focus.end');
         }
     };
     return redactor;
