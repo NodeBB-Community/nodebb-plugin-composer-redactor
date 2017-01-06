@@ -17,13 +17,11 @@
 		<div class="title-container row">
 			<!-- IF showHandleInput -->
 			<div class="col-sm-3 col-md-12">
-				<input class="handle form-control" type="text" tabindex="1"
-					   placeholder="[[topic:composer.handle_placeholder]]" value="{handle}"/>
+				<input class="handle form-control" type="text" tabindex="1" placeholder="[[topic:composer.handle_placeholder]]" value="{handle}"/>
 			</div>
 			<div class="col-sm-9 col-md-12">
 				<!-- IF isTopicOrMain -->
-				<input class="title form-control" type="text" tabindex="1"
-					   placeholder="[[topic:composer.title_placeholder]]" value="{title}"/>
+				<input class="title form-control" type="text" tabindex="1" placeholder="[[topic:composer.title_placeholder]]" value="{title}"/>
 				<!-- ELSE -->
 				<span class="title form-control">[[topic:composer.replying_to, "{title}"]]</span>
 				<!-- ENDIF isTopicOrMain -->
@@ -31,8 +29,7 @@
 			<!-- ELSE -->
 			<div class="<!-- IF isTopic -->col-lg-9<!-- ELSE -->col-lg-12<!-- ENDIF isTopic --> col-md-12">
 				<!-- IF isTopicOrMain -->
-				<input class="title form-control" type="text" tabindex="1"
-					   placeholder="[[topic:composer.title_placeholder]]" value="{title}"/>
+				<input class="title form-control" type="text" tabindex="1" placeholder="[[topic:composer.title_placeholder]]" value="{title}"/>
 				<!-- ELSE -->
 				<span class="title form-control">[[topic:composer.replying_to, "{title}"]]</span>
 				<!-- ENDIF isTopicOrMain -->
@@ -59,8 +56,20 @@
 
 				<!-- IF isTopicOrMain -->
 				<div class="tags-container inline-block">
-					<input class="tags" type="text" class="form-control"
-						   placeholder="[[tags:enter_tags_here, {minimumTagLength}, {maximumTagLength}]]" tabindex="4"/>
+					<div class="btn-group <!-- IF !tagWhitelist.length -->hidden<!-- ENDIF !tagWhitelist.length -->" component="composer/tag/dropdown">
+						<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+							<span class="visible-sm-inline visible-md-inline visible-lg-inline"><i class="fa fa-tags"></i></span>
+							<span class="caret"></span>
+						</button>
+
+						<ul class="dropdown-menu">
+							<!-- BEGIN tagWhitelist -->
+							<li data-tag="@value"><a href="#">@value</a></li>
+							<!-- END tagWhitelist -->
+						</ul>
+					</div>
+
+					<input class="tags" type="text" class="form-control" placeholder="[[tags:enter_tags_here, {minimumTagLength}, {maximumTagLength}]]" tabindex="4"/>
 				</div>
 				<!-- IF allowTopicsThumbnail -->
 				  <div class="topic-thumb-container center-block hide">
@@ -91,11 +100,11 @@
 		<span class="write-container">
 			<textarea></textarea>
 		</span>
-	
+
 	<!-- IF isTopic -->
 	<ul class="category-selector visible-xs visible-sm"></ul>
 	<!-- ENDIF isTopic -->
-		
+
 		<div class="resizer">
 			<div class="trigger text-center"><i class="fa"></i></div>
 		</div>
