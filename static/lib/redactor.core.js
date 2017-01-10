@@ -95,7 +95,7 @@ define('redactor', [
     $.Redactor.opts.plugins = ['video', 'iconic', 'table', 'topic_thumb', 'underline'];
     $.Redactor.opts.focusEnd = true;
     $.Redactor.opts.imageUploadHeaders = {'x-csrf-token': config.csrf_token};
-    $.Redactor.opts.imageUpload = '/api/post/upload';
+    $.Redactor.opts.imageUpload = config.relative_path + '/api/post/upload';
     $.Redactor.opts.imageUploadParam = 'files[]';
     $.Redactor.opts.imageUploadKey = 'url';
 
