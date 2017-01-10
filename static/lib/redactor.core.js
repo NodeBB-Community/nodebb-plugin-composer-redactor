@@ -18,11 +18,13 @@ define('redactor', [
         $(window).off('action:redactor.load');
 
         textarea.redactor({
-          uploadImageFields: {
+          imageUploadFields: {
             'cid': '#cmp-cid-' + data.post_uuid,
+            '_csrf': config.csrf_token
           },
-          uploadFileFields: {
+          fileUploadFields: {
             'cid': '#cmp-cid-' + data.post_uuid,
+            '_csrf': config.csrf_token
           }
         });
 
@@ -94,7 +96,6 @@ define('redactor', [
     // Redactor Options
     $.Redactor.opts.plugins = ['video', 'iconic', 'table', 'topic_thumb', 'underline'];
     $.Redactor.opts.focusEnd = true;
-    $.Redactor.opts.imageUploadHeaders = {'x-csrf-token': config.csrf_token};
     $.Redactor.opts.imageUpload = config.relative_path + '/api/post/upload';
     $.Redactor.opts.imageUploadParam = 'files[]';
     $.Redactor.opts.imageUploadKey = 'url';
