@@ -106,7 +106,7 @@ define('redactor', [
     }
 
     var redactor = {};
-    redactor.addQuote = function (tid, topicSlug, postIndex, pid, title, username, text) {
+    redactor.addQuote = function (tid, pid, title, username, text) {
 
         var uuid = composer.findByTid(tid) || composer.active;
         var escapedTitle = (title || '').replace(/([\\`*_{}\[\]()#+\-.!])/g, '\\$1').replace(/\[/g, '&#91;').replace(/\]/g, '&#93;').replace(/%/g, '&#37;').replace(/,/g, '&#44;');
@@ -116,26 +116,17 @@ define('redactor', [
         }
 
         if (uuid === undefined) {
-            if (title && topicSlug && postIndex) {
-                composer.newReply(tid, pid, title, '<a href="' + config.relative_path + '/post/' + pid + '">' + username + ' said</a>:\n' + text + '<p>&nbsp;</p>');
-            } else {
-                composer.newReply(tid, pid, title, '[[modules:composer.user_said, ' + username + ']]\n' + text + '<p>&nbsp;</p>');
-            }
-            return;
+            return composer.newReply(tid, pid, title, '[[modules:composer.user_said, ' + username + ']]\n' + text + '<p>&nbsp;</p>');
         } else if (uuid !== composer.active) {
             // If the composer is not currently active, activate it
             composer.load(uuid);
         }
 
+        // There is a composer open already, append this blockquote to the text
         var postContainer = $('#cmp-uuid-' + uuid);
         var bodyEl = postContainer.find('textarea');
         var prevText = bodyEl.val();
-        if (title && topicSlug && postIndex) {
-            var link = '[' + title + '](/topic/' + topicSlug + '/' + (parseInt(postIndex, 10) + 1) + ')';
-            translator.translate('<a href="' + config.relative_path + '/post/' + pid + '">' + username + ' said</a>:\n', config.defaultLang, onTranslated);
-        } else {
-            translator.translate('[[modules:composer.user_said, ' + username + ']]\n', config.defaultLang, onTranslated);
-        }
+        translator.translate('[[modules:composer.user_said, ' + username + ']]\n', config.defaultLang, onTranslated);
 
         function onTranslated(translated) {
             composer.posts[uuid].body = (prevText.length ? prevText + '\n\n' : '') + translated + text + '<p>&nbsp;</p>';

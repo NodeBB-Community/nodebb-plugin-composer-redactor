@@ -18,7 +18,7 @@ $(document).ready(function() {
 			});
 
 			$(window).on('action:composer.addQuote', function(ev, data) {
-				redactor.addQuote(data.tid, data.slug, data.index, data.pid, data.topicName, data.username, data.text);
+				redactor.addQuote(data.tid, data.pid, data.topicName, data.username, data.text);
 			});
 		});
 	});
