@@ -94,7 +94,7 @@ define('redactor', [
     };
 
     // Redactor Options
-    $.Redactor.opts.plugins = ['video', 'iconic', 'table', 'topic_thumb', 'underline'];
+    $.Redactor.opts.plugins = ['video', 'iconic', 'table', 'topic_thumb', 'underline','emoticons'];
     $.Redactor.opts.focusEnd = true;
     $.Redactor.opts.imageUpload = config.relative_path + '/api/post/upload';
     $.Redactor.opts.imageUploadParam = 'files[]';
