@@ -93,8 +93,45 @@ define('redactor', [
         };
     };
 
+    $.Redactor.prototype.iconic = function()
+    {
+        return {
+            init: function ()
+            {
+                var icons = {
+                    'format': '<i class="fa fa-paragraph"></i>',
+                    'ol': '<i class="fa fa-list-ol"></i>',
+                    'ul': '<i class="fa fa-list-ul"></i>',
+                    'link': '<i class="fa fa-link"></i>',
+                    'horizontalrule': '<i class="fa fa-minus"></i>',
+                    'image': '<i class="fa fa-picture-o"></i>',
+                    'indent': '<i class="fa fa-indent"></i>',
+                    'outdent': '<i class="fa fa-outdent"></i>',
+                    'emoticons': '<i class="fa fa-smile-o"></i>',
+                    'video': '<i class="fa fa-video-camera"></i>',
+                    'file': '<i class="fa fa-upload"></i>',
+                    'table': '<i class="fa fa-table"></i>'
+                };
+
+                $.each(this.button.all(), $.proxy(function(i,s)
+                {
+                    var key = $(s).attr('rel');
+
+                    if (typeof icons[key] !== 'undefined')
+                    {
+                        var icon = icons[key];
+                        var button = this.button.get(key);
+                        this.button.setIcon(button, icon);
+                    }
+
+                }, this));
+            }
+        };
+    };
+
     // Redactor Options
-    $.Redactor.opts.plugins = ['video', 'iconic', 'table', 'topic_thumb', 'underline', 'emoticons'];
+    $.Redactor.opts.buttons.splice($.Redactor.opts.buttons.indexOf('lists'), 1, 'horizontalrule', 'ol', 'ul', 'indent', 'outdent');
+    $.Redactor.opts.plugins = ['video', 'table', 'topic_thumb', 'underline', 'emoticons', 'iconic'];
     $.Redactor.opts.focusEnd = true;
     $.Redactor.opts.imageUpload = config.relative_path + '/api/post/upload';
     $.Redactor.opts.imageUploadParam = 'files[]';
