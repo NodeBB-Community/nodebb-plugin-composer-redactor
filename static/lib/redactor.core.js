@@ -52,10 +52,17 @@ define('redactor', [
           });
         }
 
-        postContainer.find('.redactor-editor').addClass('write');
+        var editor = postContainer.find('.redactor-editor');
+        editor.addClass('write');
 
-        scrollStop.apply(postContainer.find('.redactor-editor'));
+        scrollStop.apply(editor);
         autocomplete.init(postContainer);
+
+        // make autocomplete work by moving it's event handler to the first spot
+        setTimeout(function () {
+            var evs = $._data(editor[0], 'events').keydown;
+            evs.unshift(evs.pop());
+        }, 100);
 
         resize.reposition(postContainer);
     });
