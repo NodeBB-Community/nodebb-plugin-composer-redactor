@@ -52,18 +52,11 @@ define('redactor', [
           });
         }
 
-        var editor = postContainer.find('.redactor-editor');
+        var editor = postContainer.find('.redactor-layer');
         editor.addClass('write');
 
         scrollStop.apply(editor);
         autocomplete.init(postContainer);
-
-        // make autocomplete work by moving it's event handler to the first spot
-        // setTimeout(function () {
-        //     var evs = $._data(editor[0], 'events').keydown;
-        //     evs.unshift(evs.pop());
-        // }, 100);
-
         resize.reposition(postContainer);
     });
 
