@@ -11,8 +11,10 @@ define('redactor', [
 ], function (composer, translator, autocomplete, resize, scrollStop) {
 
     $(window).on('action:composer.loaded', function (ev, data) {
-        var postContainer = $('#cmp-uuid-' + data.post_uuid),
-            textarea = postContainer.find('textarea');
+        var postContainer = $('#cmp-uuid-' + data.post_uuid);
+        var textarea = postContainer.find('textarea');
+
+        var textDirection = $('html').attr('data-dir');
 
         $(window).trigger('action:redactor.load', $.Redactor);
         $(window).off('action:redactor.load');
@@ -25,7 +27,8 @@ define('redactor', [
           fileUploadFields: {
             'cid': '#cmp-cid-' + data.post_uuid,
             '_csrf': config.csrf_token
-          }
+          },
+          direction: textDirection || undefined
         });
 
         var cidEl = postContainer.find('.category-list');
