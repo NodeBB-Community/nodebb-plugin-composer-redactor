@@ -9458,7 +9458,6 @@
 						this.savedSel = false;
 					}
 				},
-				saved: {},
                 saveInstant: function()
                 {
                     var el = this.core.editor()[0];
