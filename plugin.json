@@ -10,9 +10,6 @@
 		{ "hook": "filter:post.edit", "method": "sanitize" },
 		{ "hook": "filter:composer.build", "method": "build" }
 	],
-	"staticDirs": {
-	    "images": "./static/emoji"
-	},
 	"css": [
 		"./static/css/redactor.css"
 	],
