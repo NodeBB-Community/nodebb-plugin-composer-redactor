@@ -162,7 +162,7 @@
   z-index: auto; }
 
 .redactor-link-tooltip {
-  z-index: 99; }
+  z-index: 1050; }
 
 .redactor-toolbar {
   z-index: 100; }
@@ -237,6 +237,20 @@
   position: absolute;
   left: -3000px; }
 
+.redactor-toolbar-box {
+  position: relative; }
+  .redactor-toolbar-box .re-button-tooltip {
+    display: none;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 101;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 2px;
+    padding: 3px 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    font-family: Consolas, Menlo, Monaco, "Courier New", monospace; }
+
 .redactor-toolbar {
   position: relative;
   padding: 0 !important;
@@ -247,6 +261,11 @@
     content: "";
     display: table;
     clear: both; }
+
+.redactor-toolbar.redactor-toolbar-overflow {
+  overflow-y: auto;
+  white-space: nowrap;
+  height: 48px; }
 
 .redactor-toolbar li a {
   color: rgba(0, 0, 0, 0.8); }
@@ -272,7 +291,7 @@
   background: #000; }
 
 .redactor-toolbar.redactor-toolbar-external {
-  z-index: 999;
+  z-index: 100;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: none; }
 
@@ -347,19 +366,6 @@
   .redactor-toolbar li a.re-button-icon {
     padding: 16px;
     font-size: 16px; }
-  .redactor-air li a .re-button-tooltip,
-  .redactor-toolbar li a .re-button-tooltip {
-    display: none;
-    position: absolute;
-    white-space: nowrap;
-    left: 50%;
-    bottom: -18px;
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 2px;
-    padding: 3px 8px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 12px;
-    font-family: Consolas, Menlo, Monaco, "Courier New", monospace; }
 
 .redactor-toolbar li a {
   border-right: 1px solid rgba(0, 0, 0, 0.05); }
@@ -787,6 +793,7 @@
   #redactor-modal input[type="password"],
   #redactor-modal input[type="email"],
   #redactor-modal input[type="url"],
+  #redactor-modal input[type="number"],
   #redactor-modal textarea {
     box-sizing: border-box;
     position: relative;
@@ -807,6 +814,7 @@
     #redactor-modal input[type="password"]:focus,
     #redactor-modal input[type="email"]:focus,
     #redactor-modal input[type="url"]:focus,
+    #redactor-modal input[type="number"]:focus,
     #redactor-modal textarea:focus {
       -moz-transition: border 0.3s ease-in;
       transition: border 0.3s ease-in;
@@ -955,6 +963,13 @@
     margin: 0;
     padding: 0;
     margin-bottom: 12px; }
+    .redactor-styles h1:empty,
+    .redactor-styles h2:empty,
+    .redactor-styles h3:empty,
+    .redactor-styles h4:empty,
+    .redactor-styles h5:empty,
+    .redactor-styles h6:empty {
+      min-height: 24px; }
   .redactor-styles h1 {
     font-size: 40px;
     line-height: 44px; }
@@ -985,6 +1000,9 @@
   .redactor-styles address {
     padding: 0;
     margin: 0; }
+  .redactor-styles p:empty,
+  .redactor-styles blockquote:empty {
+    min-height: 24px; }
   .redactor-styles p + h2,
   .redactor-styles p + h3,
   .redactor-styles p + h4,
@@ -1103,6 +1121,10 @@
     top: -.4rem; }
   .redactor-styles sub {
     bottom: -.2rem; }
+  .redactor-styles strong:empty, .redactor-styles b:empty, .redactor-styles em:empty, .redactor-styles i:empty, .redactor-styles sup:empty, .redactor-styles sub:empty, .redactor-styles u:empty, .redactor-styles ins:empty {
+    display: inline-block;
+    min-width: 1px;
+    min-height: 1rem; }
   .redactor-styles figcaption {
     margin: 4px 0;
     font-size: 12px;
