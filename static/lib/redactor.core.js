@@ -9,27 +9,39 @@ define('redactor', [
     'composer/resize',
     'scrollStop'
 ], function (composer, translator, autocomplete, resize, scrollStop) {
-
-    $(window).on('action:composer.loaded', function (ev, data) {
-        var postContainer = $('#cmp-uuid-' + data.post_uuid);
-        var textarea = postContainer.find('textarea');
-
+    function redactorify(textarea, data) {
         var textDirection = $('html').attr('data-dir');
 
         $(window).trigger('action:redactor.load', $.Redactor);
         $(window).off('action:redactor.load');
 
-        textarea.redactor({
-          imageUploadFields: {
-            'cid': '#cmp-cid-' + data.post_uuid,
-            '_csrf': config.csrf_token
-          },
-          fileUploadFields: {
-            'cid': '#cmp-cid-' + data.post_uuid,
-            '_csrf': config.csrf_token
-          },
-          direction: textDirection || undefined
-        });
+        var options = {
+            direction: textDirection || undefined,
+            imageUploadFields: {
+                '_csrf': config.csrf_token
+            },
+            fileUploadFields: {
+                '_csrf': config.csrf_token
+            },
+        };
+
+        if (data.height) {
+            options.maxHeight = parseInt(data.height, 10) || undefined;
+        }
+
+        if (data.onChange && typeof data.onChange === 'function') {
+            options.callbacks = options.callbacks || {};
+            options.callbacks.change = data.onChange;
+        }
+
+        textarea.redactor(options);
+    };
+
+    $(window).on('action:composer.loaded', function (ev, data) {
+        var postContainer = $('#cmp-uuid-' + data.post_uuid);
+        var textarea = postContainer.find('textarea');
+
+        redactorify(textarea, data);
 
         var cidEl = postContainer.find('.category-list');
         if (cidEl.length) {
@@ -66,6 +78,26 @@ define('redactor', [
     $(window).on('action:composer.submit', function (e, data) {
         // Remove all empty paragraph blocks from composer content
         data.composerData.content = data.composerData.content.replace(/<p>(<br>| )+<\/p>/gm, '');
+    });
+
+    $(window).on('action:chat.loaded', function (e, containerEl) {
+        var composerEl = $(containerEl).find('[component="chat/composer"]');
+        var inputEl = composerEl.find('textarea.chat-input');
+
+        redactorify(inputEl, {
+            height: 120,
+            onChange: function () {
+                var element = $('[component="chat/messages"]').find('[component="chat/message/remaining"]')
+                var curLength = this.code.get().length;
+                element.text(config.maximumChatMessageLength - curLength);
+            }
+        });
+    });
+
+    $(window).on('action:chat.sent', function (e, data) {
+        // Empty chat input
+        var redactor = $('.chat-modal[data-roomid="' + data.roomId + '"] .chat-input, .expanded-chat[data-roomid="' + data.roomId + '"] .chat-input').redactor('core.object');
+        redactor.code.set('');
     });
 
     // Topic Thumb

@@ -17,6 +17,7 @@
 		"../nodebb-plugin-composer-default/static/less/composer.less",
 		"./static/less/redactor-overrides.less",
 		"./static/less/composer.less",
+		"./static/less/chats.less",
 		"./static/less/emoji.less"
 	],
 	"scripts": [
