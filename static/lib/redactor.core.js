@@ -173,7 +173,7 @@ define('redactor', [
     $.Redactor.opts.imageUploadKey = 'url';
 
     if (config.allowFileUploads) {
-        $.Redactor.opts.fileUpload = '/api/post/upload';
+        $.Redactor.opts.fileUpload = config.relative_path + '/api/post/upload';
         $.Redactor.opts.fileUploadParam = 'files[]';
     }
 
