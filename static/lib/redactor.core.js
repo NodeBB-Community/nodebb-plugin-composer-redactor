@@ -38,7 +38,7 @@ define('redactor', [
     };
 
     $(window).on('action:composer.loaded', function (ev, data) {
-        var postContainer = $('#cmp-uuid-' + data.post_uuid);
+        var postContainer = $('.composer[data-uuid="' + data.post_uuid + '"]')
         var textarea = postContainer.find('textarea');
 
         redactorify(textarea, data);
@@ -195,7 +195,7 @@ define('redactor', [
         }
 
         // There is a composer open already, append this blockquote to the text
-        var postContainer = $('#cmp-uuid-' + uuid);
+        var postContainer = $('.composer[data-uuid="' + uuid + '"]');
         var bodyEl = postContainer.find('textarea');
         var prevText = bodyEl.val();
         translator.translate('[[modules:composer.user_said, ' + username + ']]\n', config.defaultLang, onTranslated);
