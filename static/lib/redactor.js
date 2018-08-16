@@ -7520,10 +7520,10 @@
 				getLineHtml: function()
 				{
 					var html = '<hr id="redactor-hr-tmp-id" />';
-					if (!this.detect.isFirefox() && this.utils.isEmpty())
-					{
+					// if (!this.detect.isFirefox() && this.utils.isEmpty())
+					// {
 						html += '<p>' + this.opts.emptyHtml + '</p>';
-					}
+					// }
 
 					return html;
 				},
