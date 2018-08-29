@@ -6,6 +6,7 @@ var controllers = require('./lib/controllers'),
 	plugins = module.parent.exports,
 	meta = module.parent.require('./meta'),
 	helpers = module.parent.require('./controllers/helpers'),
+	utils = module.parent.require('../public/src/utils'),
 
 	async = module.parent.require('async'),
 	winston = module.parent.require('winston'),
@@ -121,5 +122,10 @@ plugin.build = function(data, callback) {
 
 	callback(null, data);
 }
+
+plugin.checkContent = function (data, callback) {
+	data.content = utils.stripHTMLTags(data.content);
+	process.nextTick(callback, null, data);
+};
 
 module.exports = plugin;

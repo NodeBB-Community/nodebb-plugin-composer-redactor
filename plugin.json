@@ -8,7 +8,8 @@
 		{ "hook": "filter:topic.post", "method": "sanitize" },
 		{ "hook": "filter:topic.reply", "method": "sanitize" },
 		{ "hook": "filter:post.edit", "method": "sanitize" },
-		{ "hook": "filter:composer.build", "method": "build" }
+		{ "hook": "filter:composer.build", "method": "build" },
+		{ "hook": "filter:messaging.checkContent", "method": "checkContent" }
 	],
 	"css": [
 		"./static/css/redactor.css"

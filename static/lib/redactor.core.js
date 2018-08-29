@@ -88,7 +88,7 @@ define('redactor', [
             height: 120,
             onChange: function () {
                 var element = $('[component="chat/messages"]').find('[component="chat/message/remaining"]')
-                var curLength = this.code.get().length;
+                var curLength = utils.stripHTMLTags(this.code.get()).length;
                 element.text(config.maximumChatMessageLength - curLength);
             }
         });
