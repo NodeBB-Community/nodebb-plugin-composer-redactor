@@ -87,7 +87,7 @@ define('redactor', [
         redactorify(inputEl, {
             height: 120,
             onChange: function () {
-                var element = $('[component="chat/messages"]').find('[component="chat/message/remaining"]')
+                var element = composerEl.find('[component="chat/message/remaining"]');
                 var curLength = utils.stripHTMLTags(this.code.get()).length;
                 element.text(config.maximumChatMessageLength - curLength);
             }
