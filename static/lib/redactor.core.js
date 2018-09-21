@@ -96,8 +96,10 @@ define('redactor', [
 
     $(window).on('action:chat.sent', function (e, data) {
         // Empty chat input
-        var redactor = $('.chat-modal[data-roomid="' + data.roomId + '"] .chat-input, .expanded-chat[data-roomid="' + data.roomId + '"] .chat-input').redactor('core.object');
-        redactor.code.set('');
+        var redactor = $('.chat-modal[data-roomid="' + data.roomId + '"] .chat-input, .expanded-chat[data-roomid="' + data.roomId + '"] .chat-input');
+        redactor.each(function () {
+            $(this).redactor('core.object').code.set('');
+        });
     });
 
     // Topic Thumb
