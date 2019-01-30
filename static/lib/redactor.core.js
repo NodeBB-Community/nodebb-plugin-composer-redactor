@@ -71,7 +71,7 @@ define('redactor', [
         editor.addClass('write');
 
         scrollStop.apply(editor);
-        autocomplete.init(postContainer);
+        autocomplete.init(postContainer, data.post_uuid);
         resize.reposition(postContainer);
     });
 
