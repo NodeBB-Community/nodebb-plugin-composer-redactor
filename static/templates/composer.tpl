@@ -1,7 +1,7 @@
 <div component="composer" class="composer<!-- IF resizable --> resizable<!-- ENDIF resizable -->"<!-- IF !disabled --> style="visibility: inherit;"<!-- ENDIF !disabled -->>
 
 	<div class="composer-container">
-		<nav class="navbar navbar-fixed-top mobile-navbar visible-xs visible-sm">
+		<nav class="navbar navbar-fixed-top mobile-navbar hidden-md hidden-lg">
 			<div>
 				<button class="btn btn-sm btn-primary composer-discard" data-action="discard" tabindex="-1"><i class="fa fa-times"></i></button>
 				<button class="btn btn-sm btn-primary composer-minimize" data-action="minimize" tabindex="-1"><i class="fa fa-minus"></i></button>
