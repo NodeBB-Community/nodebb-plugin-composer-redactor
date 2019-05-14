@@ -20,7 +20,7 @@ var allowedTags = ['span', 'a', 'pre', 'blockquote', 'small', 'em', 'strong',
 	'code', 'kbd', 'mark', 'address', 'cite', 'var', 'samp', 'dfn',
 	'sup', 'sub', 'b', 'i', 'u', 'del', 'ol', 'ul', 'li', 'dl',
 	'dt', 'dd', 'p', 'br', 'video', 'audio', 'source', 'iframe', 'embed',
-	'param', 'object', 'img', 'table', 'tbody', 'tfoot', 'thead', 'tr', 'td', 'th',
+	'param', 'img', 'table', 'tbody', 'tfoot', 'thead', 'tr', 'td', 'th',
 	'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr'];
 
 var allowedAttributes = {
@@ -31,7 +31,6 @@ var allowedAttributes = {
 	'video': ['autoplay', 'controls', 'height', 'loop', 'muted', 'poster', 'preload', 'src', 'width'],
 	'audio': ['autoplay', 'controls', 'loop', 'muted', 'preload', 'src'],
 	'embed': ['height', 'src', 'type', 'width'],
-	'object': ['data', 'form', 'height', 'name', 'type', 'usemap', 'width'],
 	'param': ['name', 'value'],
 	'source': ['media', 'src', 'type']};
 
