@@ -26,6 +26,7 @@
     "compatibility": "^1.9.4"
   },
   "dependencies": {
+    "async": "^2.6.2",
     "sanitize-html": "^1.7.2"
   }
 }
