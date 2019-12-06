@@ -186,7 +186,7 @@ define('redactor', [
         var escapedTitle = (title || '').replace(/([\\`*_{}\[\]()#+\-.!])/g, '\\$1').replace(/\[/g, '&#91;').replace(/\]/g, '&#93;').replace(/%/g, '&#37;').replace(/,/g, '&#44;');
 
         if (text) {
-            text = "<blockquote>" + text + "</blockquote>";
+            text = "<blockquote>" + utils.decodeHTMLEntities(text) + "</blockquote>";
         }
 
         if (uuid === undefined) {
