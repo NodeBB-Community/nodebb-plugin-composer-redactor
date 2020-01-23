@@ -19,13 +19,14 @@ var controllers = require('./lib/controllers'),
 var allowedTags = ['span', 'a', 'pre', 'blockquote', 'small', 'em', 'strong',
 	'code', 'kbd', 'mark', 'address', 'cite', 'var', 'samp', 'dfn',
 	'sup', 'sub', 'b', 'i', 'u', 'del', 'ol', 'ul', 'li', 'dl',
-	'dt', 'dd', 'p', 'br', 'video', 'audio', 'source', 'embed',
+	'dt', 'dd', 'p', 'br', 'video', 'audio', 'source', 'iframe', 'embed',
 	'param', 'img', 'table', 'tbody', 'tfoot', 'thead', 'tr', 'td', 'th',
 	'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr'];
 
 var allowedAttributes = {
 	'a': ['href', 'hreflang', 'media', 'rel', 'target', 'type'],
 	'img': ['alt', 'height', 'ismap', 'src', 'usemap', 'width'],
+	'iframe': ['height', 'name', 'src', 'width'],
 	'span': [],
 	'video': ['autoplay', 'controls', 'height', 'loop', 'muted', 'poster', 'preload', 'src', 'width'],
 	'audio': ['autoplay', 'controls', 'loop', 'muted', 'preload', 'src'],
