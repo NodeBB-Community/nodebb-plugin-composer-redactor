@@ -124,6 +124,8 @@ plugin.build = function(data, callback) {
 
 plugin.checkContent = function (data, callback) {
 	data.content = utils.stripHTMLTags(data.content);
+	data.length = String(data.content).trim();
+
 	process.nextTick(callback, null, data);
 };
 
