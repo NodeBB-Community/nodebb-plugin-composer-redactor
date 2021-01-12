@@ -38,7 +38,8 @@
 		"../nodebb-plugin-composer-default/static/lib/composer/preview.js",
 		"../nodebb-plugin-composer-default/static/lib/composer/resize.js",
 		"../nodebb-plugin-composer-default/static/lib/composer/tags.js",
-		"../nodebb-plugin-composer-default/static/lib/composer/uploads.js"
+		"../nodebb-plugin-composer-default/static/lib/composer/uploads.js",
+		"./node_modules/screenfull/dist/screenfull.js"
 	],
 	"templates": "static/templates"
 }
