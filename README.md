@@ -5,8 +5,11 @@ This plugin activates the WYSIWYG Redactor composer for NodeBB. Please ensure th
 * "Sanitise HTML" is disabled from the Markdown plugin (or the markdown plugin is disabled altogether)
 * Any other composers (i.e. nodebb-plugin-composer-default) is disabled
 
-## Contributors Welcome
-This plugin is in its early stages. If you'd like to look at the [documentation](http://imperavi.com/redactor/docs/) and add a feature, or take a look at the GitHub Issues and do something from there then please do. All pull requests lovingly reviewed.
+# ⚠️ Maintenance Alert
+
+Please be advised that this composer has been superceded by the [Quill Composer](//github.com/nodebb/nodebb-plugin-composer-quill). This composer has entered maintenance mode, meaning it will continue to work on newer NodeBB versions, although at potentially reduced functionality.
+
+Please file an issue on the issue tracker if there are regressions after NodeBB releases.
 
 ## Screenshots
 

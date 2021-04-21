@@ -15,95 +15,68 @@
 				<button class="btn btn-sm btn-primary composer-submit" data-action="post" tabindex="-1"><i class="fa fa-chevron-right"></i></button>
 			</div>
 		</nav>
-		<div class="title-container row">
+
+		<div class="row title-container">
+			{{{ if isTopic }}}
+			<div class="category-list-container hidden-sm hidden-xs">
+				<!-- IMPORT partials/category-selector.tpl -->
+			</div>
+			{{{ end }}}
+
 			<!-- IF showHandleInput -->
-			<div class="col-sm-3 col-md-12">
-				<input class="handle form-control" type="text" tabindex="1" placeholder="[[topic:composer.handle_placeholder]]" value="{handle}"/>
+			<div data-component="composer/handle">
+				<input class="handle form-control" type="text" tabindex="1" placeholder="[[topic:composer.handle_placeholder]]" value="{handle}" />
 			</div>
-			<div class="col-sm-9 col-md-12">
-				<!-- IF isTopicOrMain -->
-				<input class="title form-control" type="text" tabindex="1" placeholder="[[topic:composer.title_placeholder]]" value="{title}"/>
-				<!-- ELSE -->
-				<span class="title form-control">[[topic:composer.replying_to, "{title}"]]</span>
-				<!-- ENDIF isTopicOrMain -->
-			</div>
-			<!-- ELSE -->
-			<div class="<!-- IF isTopic -->col-lg-9<!-- ELSE -->col-lg-12<!-- ENDIF isTopic --> col-md-12">
-				<!-- IF isTopicOrMain -->
-				<input class="title form-control" type="text" tabindex="1" placeholder="[[topic:composer.title_placeholder]]" value="{title}"/>
-				<!-- ELSE -->
-				<span class="title form-control">[[topic:composer.replying_to, "{title}"]]</span>
-				<!-- ENDIF isTopicOrMain -->
-			</div>
-			<!-- IF isTopic -->
-			<div class="category-list-container col-lg-3 col-md-12 hidden-sm hidden-xs">
-			</div>
-			<!-- ENDIF isTopic -->
 			<!-- ENDIF showHandleInput -->
-		</div>
-
-		<div class="row category-tag-row">
-			<div class="btn-toolbar formatting-bar">
-				<div class="btn-group pull-right action-bar hidden-sm hidden-xs">
-					<button class="btn btn-default composer-discard" data-action="discard" tabindex="-1"><i
-								class="fa fa-times"></i> [[topic:composer.discard]]
-					</button>
-
-					<button class="btn btn-primary composer-submit" data-action="post" tabindex="6"><i
-								class="fa fa-check"></i> [[topic:composer.submit]]
-					</button>
-				</div>
-
+			<div data-component="composer/title">
 				<!-- IF isTopicOrMain -->
-				<div class="tags-container inline-block">
-					<div class="btn-group <!-- IF !tagWhitelist.length -->hidden<!-- ENDIF !tagWhitelist.length -->" component="composer/tag/dropdown">
-						<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-							<span class="visible-sm-inline visible-md-inline visible-lg-inline"><i class="fa fa-tags"></i></span>
-							<span class="caret"></span>
-						</button>
-
-						<ul class="dropdown-menu">
-							<!-- BEGIN tagWhitelist -->
-							<li data-tag="@value"><a href="#">@value</a></li>
-							<!-- END tagWhitelist -->
-						</ul>
-					</div>
-
-					<input class="tags" type="text" class="form-control" placeholder="[[tags:enter_tags_here, {minimumTagLength}, {maximumTagLength}]]" tabindex="4"/>
-				</div>
-				<!-- IF allowTopicsThumbnail -->
-				  <div class="topic-thumb-container center-block hide">
-					<form id="thumbForm" method="post" class="topic-thumb-form form-inline" enctype="multipart/form-data">
-					  <img class="topic-thumb-preview"></img>
-					  <div class="form-group topic-thumb-ctrl visible-xs">
-						<i class="fa fa-spinner fa-spin hide topic-thumb-spinner" title="[[topic:composer.uploading]]"></i>
-						<i class="fa fa-times topic-thumb-btn hide topic-thumb-clear-btn" title="[[topic:composer.thumb_remove]]"></i>
-					  </div>
-					  <div class="form-group">
-						<label for="topic-thumb-url">[[topic:composer.thumb_url_label]]</label>
-						<input type="text" id="topic-thumb-url" class="form-control" placeholder="[[topic:composer.thumb_url_placeholder]]" />
-					  </div>
-					  <div class="form-group">
-						<label for="topic-thumb-file">[[topic:composer.thumb_file_label]]</label>
-						<input type="file" id="topic-thumb-file" class="form-control" />
-					  </div>
-					  <div class="form-group topic-thumb-ctrl hidden-xs">
-						<i class="fa fa-spinner fa-spin hide topic-thumb-spinner" title="[[topic:composer.uploading]]"></i>
-						<i class="fa fa-times topic-thumb-btn hide topic-thumb-clear-btn" title="[[topic:composer.thumb_remove]]"></i>
-					  </div>
-					</form>
-				  </div>
-				<!-- ENDIF allowTopicsThumbnail -->
+				<input class="title form-control" type="text" tabindex="1" placeholder="[[topic:composer.title_placeholder]]" value="{title}"/>
+				<!-- ELSE -->
+				<span class="title form-control">[[topic:composer.replying_to, "{title}"]]</span>
 				<!-- ENDIF isTopicOrMain -->
+				<div id="quick-search-container" class="quick-search-container hidden">
+					<div class="text-center loading-indicator"><i class="fa fa-spinner fa-spin"></i></div>
+					<div class="quick-search-results-container"></div>
+				</div>
+			</div>
+
+			<div class="pull-right draft-icon hidden-xs hidden-sm"></div>
+
+			<!-- Unavailable for now -->
+			<!-- <div class="display-scheduler pull-right hidden-sm hidden-xs{{{ if !canSchedule }}} hidden{{{ end }}}">
+				<i class="fa fa-clock-o"></i>
+			</div> -->
+
+			<div class="btn-group pull-right action-bar hidden-sm hidden-xs">
+				<button class="btn btn-default composer-discard" data-action="discard" tabindex="-1"><i class="fa fa-times"></i> [[topic:composer.discard]]</button>
+
+				<button class="btn btn-primary composer-submit" data-action="post" tabindex="6" data-text-variant=" [[topic:composer.schedule]]"><i class="fa fa-check"></i> [[topic:composer.submit]]</button>
 			</div>
 		</div>
+
 		<span class="write-container">
 			<textarea></textarea>
 		</span>
 
-	<!-- IF isTopic -->
-	<ul class="category-selector visible-xs visible-sm"></ul>
-	<!-- ENDIF isTopic -->
+		<!-- IF isTopicOrMain -->
+		<div class="tag-row">
+			<div class="tags-container">
+				<div class="btn-group dropup <!-- IF !tagWhitelist.length -->hidden<!-- ENDIF !tagWhitelist.length -->" component="composer/tag/dropdown">
+					<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+						<span class="visible-sm-inline visible-md-inline visible-lg-inline"><i class="fa fa-tags"></i></span>
+						[[tags:select_tags]]
+					</button>
+
+					<ul class="dropdown-menu">
+						<!-- BEGIN tagWhitelist -->
+						<li data-tag="{@value}"><a href="#">{@value}</a></li>
+						<!-- END tagWhitelist -->
+					</ul>
+				</div>
+				<input class="tags" type="text" class="form-control" placeholder="[[tags:enter_tags_here, {minimumTagLength}, {maximumTagLength}]]" tabindex="5"/>
+			</div>
+		</div>
+		<!-- ENDIF isTopicOrMain -->
 
 		<div class="resizer">
 			<div class="trigger text-center"><i class="fa"></i></div>

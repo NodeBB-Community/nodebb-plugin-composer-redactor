@@ -174,7 +174,7 @@ define('redactor', [
     $.Redactor.opts.imageUploadParam = 'files[]';
     $.Redactor.opts.imageUploadKey = 'url';
 
-    if (config.allowFileUploads) {
+    if (app.user.privileges['upload:post:file']) {
         $.Redactor.opts.fileUpload = config.relative_path + '/api/post/upload';
         $.Redactor.opts.fileUploadParam = 'files[]';
     }

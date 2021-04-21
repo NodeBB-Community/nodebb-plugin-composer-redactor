@@ -4456,6 +4456,12 @@
 				},
 				insert: function(json, direct, e)
 				{
+					// NodeBB override -- json contains status/response, redactor expecting "url"
+					if (json.status.code === 'ok' && json.response.images.length) {
+						json.url = json.response.images[0].url;
+						json.name = json.url.replace(`${config.upload_url}/files/`, '').slice(14);
+					}
+
 					// error callback
 					if (typeof json.error !== 'undefined')
 					{
