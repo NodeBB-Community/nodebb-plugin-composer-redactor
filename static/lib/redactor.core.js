@@ -174,6 +174,13 @@ define('redactor', [
     $.Redactor.opts.imageUploadParam = 'files[]';
     $.Redactor.opts.imageUploadKey = 'url';
 
+    // Redactor error handling
+    const errorHandler = (payload) => {
+        app.alertError(payload.status.message);
+    }
+    $.Redactor.opts.callbacks.imageUploadError = errorHandler;
+    $.Redactor.opts.callbacks.fileUploadError = errorHandler;
+
     if (app.user.privileges['upload:post:file']) {
         $.Redactor.opts.fileUpload = config.relative_path + '/api/post/upload';
         $.Redactor.opts.fileUploadParam = 'files[]';

@@ -4633,6 +4633,13 @@
 				{
 					var $img;
 
+					// NodeBB override -- json contains status/response, redactor expecting "url"
+					if (json.status.code === 'ok' && json.response.images.length) {
+						json.url = json.response.images[0].url;
+					} else if (json.status.code !== 'ok') {
+						json.error = json.status.message;
+					}
+
 					// error callback
 					if (typeof json.error !== 'undefined')
 					{
