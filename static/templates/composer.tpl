@@ -11,6 +11,9 @@
 				<span class="category-name"></span> <i class="fa fa-sort"></i>
 			</div>
 			<!-- ENDIF isTopic -->
+			<div class="display-scheduler pull-right{{{ if !canSchedule }}} hidden{{{ end }}}">
+				<i class="fa fa-clock-o"></i>
+			</div>
 			<div>
 				<button class="btn btn-sm btn-primary composer-submit" data-action="post" tabindex="-1"><i class="fa fa-chevron-right"></i></button>
 			</div>
@@ -42,10 +45,9 @@
 
 			<div class="pull-right draft-icon hidden-xs hidden-sm"></div>
 
-			<!-- Unavailable for now -->
-			<!-- <div class="display-scheduler pull-right hidden-sm hidden-xs{{{ if !canSchedule }}} hidden{{{ end }}}">
+			<div class="display-scheduler pull-right hidden-sm hidden-xs{{{ if !canSchedule }}} hidden{{{ end }}}">
 				<i class="fa fa-clock-o"></i>
-			</div> -->
+			</div>
 
 			<div class="btn-group pull-right action-bar hidden-sm hidden-xs">
 				<button class="btn btn-default composer-discard" data-action="discard" tabindex="-1"><i class="fa fa-times"></i> [[topic:composer.discard]]</button>
